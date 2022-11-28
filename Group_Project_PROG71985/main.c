@@ -14,8 +14,8 @@
 
 int main(void)
 {
-	PSTACK head = InitializeStack(&head);
-	PSTACK current;
+	PSTACK list = InitializeStack(&list);
+	//PSTACK current;
 
 	char choice;
 	char string[MAXLEN];
@@ -29,37 +29,37 @@ int main(void)
 		case 'a':
 			puts("Pleases enter your new task");
 			GetString(string, MAXLEN);
-			current = AddAppt(&head, string);
-			printf("This is what you entered: %s", current->data);
+			AddAppt(&list, string);
+			printf("This is what you entered: %s\n", &list->data);
 			
-			/*if (isEmpty(&head))
+			/*if (isEmpty(&list))
 				puts("Yes it is empty");
 			else
 				puts("no it is not empty");*/
 			break;
-
+			
 		case 'b':
-			puts("How");
+			puts("Pleases the task you want to delete");
+			GetString(string, MAXLEN);
+			RemoveItem(&list, string);
 			break;
 
 		case 'c':
-			puts("Are");
+			
 			break;
 
 		case 'd':
-			puts("You");
 			break;
 
 		case 'e':
-			puts("!");
 			break;
 		
 		case 'f':
-			puts("hehe");
+			puts("Here are all your tasks:");
+			Display(&list);
 			break;
 		
 		case 'g':
-			puts("lol");
 			break;
 
 		default:

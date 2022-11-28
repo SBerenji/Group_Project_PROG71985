@@ -52,29 +52,34 @@ PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
 
 
 
-PSTACK AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
+void AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
-	PSTACK current = *list;
+	PSTACK newnode = *list;
 	//PSTACK previous;
 
-	current = (PSTACK)malloc(sizeof(STACK));  //dynamically allocate memory
+	newnode = (PSTACK)malloc(sizeof(STACK));  //dynamically allocate memory
 
-	if (current == NULL)  //if malloc returns NULL 
+	if (newnode == NULL)  //if malloc returns NULL 
 	{
 		fprintf(stderr, "error allocating memory\n");  //error message if memory allocation is unsuccessful
 		exit(EXIT_FAILURE);
 	}
 
-	if (isEmpty(&list) )
-		*list = current; /* first structure */
+	if (isEmpty(list) )
+		*list = newnode; /* first structure */
 
 	else  /* subsequent structures */
 		//previous->next = current;
 
 	{
-		current->next = NULL;
+		newnode->next = NULL;
 	}
 
+	strcpy(newnode->data, newdata);
+
+	newnode->next = *list;
+
+	*list = newnode;
 
 	//int size = sizeof(newdata);
 	//int length = size / sizeof(newdata[0]);
@@ -83,31 +88,23 @@ PSTACK AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition
 	//{
 	//	current->data[i] = newdata[i];
 	//}
-
-	strcpy(current->data, newdata);
-	return current;
-
 	//previous = current;
 	
-
-	//free(head);
-	//free(current);
-
 	//puts("The task has been added to your task manager");
 }
 
 
-//void AddItem(PLISTNODE* list, int newInfo)   //may use this function instead
+//void AddItem(PSTACK* list, int newInfo)   //may use this function instead
 //{
-//	PLISTNODE new_node = NULL;
+//	PSTACK new_node = *list;
 //
-//	new_node = (PLISTNODE)malloc(sizeof(LISTNODE));
+//	new_node = (PSTACK)malloc(sizeof(STACK));
 //	if (!new_node)
 //	{
 //		fprintf(stderr, "error allocating memory\n");
-//		exit(1);
+//		exit(EXIT_FAILURE);
 //	}
-//	new_node->info = newInfo;
+//	new_node->data = newInfo;
 //	new_node->next = *list;
 //
 //	*list = new_node;
@@ -116,40 +113,44 @@ PSTACK AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition
 
 
 
-//void RemoveItem(PSTACK* list, char infoToBeDeleted[])   //should change it
-//{
-//	PSTACK current = *list;
-//
-//	if (current->data == infoToBeDeleted)
-//	{
-//		if (current->next != NULL)  //info is in head.  and list is greater than 1 element
-//			*list = current->next;
-//		else   //i think that this is what should happen if there is only the single element (and we delete it)
-//			*list = NULL;
-//
-//		free(current);
-//		return;
-//	}
-//
-//	PSTACK prev = NULL;  // we will need the previous node for to link over the deleted one
-//	while (current != NULL && current->data != infoToBeDeleted)
-//	{
-//		prev = current;
-//		current = current->next;
-//	}
-//
-//	if (current == NULL)
-//		return;  //wasn't found - and we hit the end
-//
-//	prev->next = current->next; //unlink the node from the list
-//
-//	free(current);  // Free memory 
-//}
+void RemoveItem(PSTACK* list, char infoToBeDeleted[])   //should change it
+{
+	PSTACK current = *list;
+
+	if (strcmp(current->data, infoToBeDeleted) == 0)
+	{
+		if (current->next != NULL)  //info is in head.  and list is greater than 1 element
+			*list = current->next;
+		else   //i think that this is what should happen if there is only the single element (and we delete it)
+			*list = NULL;
+
+		free(current);
+		return;
+	}
+
+	PSTACK prev = current;  // we will need the previous node for to link over the deleted one
+	while (current != NULL && current->data != infoToBeDeleted)
+	{
+		prev = current;
+		current = current->next;
+	}
+
+	if (current == NULL)
+	{
+		puts("The task that you want to remove from your task manager does not exist");
+		return;  //wasn't found - and we hit the end
+	}
+		
+
+	prev->next = current->next; //unlink the node from the list
+
+	free(current);  // Free memory 
+}
 
 
 bool isEmpty(PSTACK* list)  //isEmpty function definition
 {
-	if (list == NULL)  //return true if stack is empty
+	if (*list == NULL)  //return true if stack is empty
 		return true;
 	else
 		return false;
@@ -172,23 +173,26 @@ void GetString(char* str, int max)   //GetString function definition that gets t
 }
 
 
-//
-//void Display(PLISTNODE list)
-//{
-//	PLISTNODE current = list;
-//	if (!current)	// list is empty, don't print!
-//		return;
-//
-//	do
-//	{
-//		printf("%d ", current->info);
-//		current = current->next;
-//	} while (current != NULL);
-//
-//	printf("\n");
-//}
-//
-//// this adds all the new items to the front of the list
+
+void Display(PSTACK list)
+{
+	PSTACK current = list;
+	if (!current)
+	{
+		puts("There are no tasks to display");
+		return;
+	}// list is empty, don't print!
+		;
+
+	do
+	{
+		printf("%s", current->data);
+		current = current->next;
+	} while (current != NULL);
+
+	printf("\n");
+}
+
 
 
 
