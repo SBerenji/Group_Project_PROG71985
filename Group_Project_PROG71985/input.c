@@ -10,7 +10,7 @@
 #include "menu.h"
 
 
-void GetString(char* str, int max)   //GetString function definition that gets the string from user
+void GetString(char str[], int max)   //GetString function definition that gets the string from user
 {                                    //No validation included as the instruction asked for string (a sequence of characters)
 									//and did not ask for a certain kind of string like a name
 

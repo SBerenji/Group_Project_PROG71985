@@ -35,9 +35,6 @@ typedef struct stack
 
 
 
-
-
-
 void menu(void);
 char menuinput(void);
 
@@ -53,7 +50,7 @@ PSTACK InitializeStack(PSTACK list);  //InitializeStack function prototype
 /* operation:       push the item onto top of stack                  */
 /* precondition:    list points to the previously initialized stack  */
 /*                  item is to be placed on top of stack             */
-void AddAppt(PSTACK* list, char* newdata[]); //PushToSatck function prototype
+void AddTask(PSTACK* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
 
 
 /* operation:       remove item from top of the stack                    */
@@ -63,7 +60,7 @@ void AddAppt(PSTACK* list, char* newdata[]); //PushToSatck function prototype
 /*                  stack                                                */
 
 //void PopFromStack(PSTACK* list);  //PopFromStack function prototype
-void RemoveItem(PSTACK* list, char infoToBeDeleted[]);
+void RemoveTask(PSTACK* list, char infoToBeDeleted[]);
 //
 /////* operation:       check if stack is empty                       */
 /////* precondition:    list points to previously initialized stack   */
@@ -71,6 +68,6 @@ void RemoveItem(PSTACK* list, char infoToBeDeleted[]);
 bool isEmpty(PSTACK* list);
 
 
-void Display(PSTACK list);
+//void Display(PSTACK list);
 
 void GetString(char* str, int max);  //GetString function prototype

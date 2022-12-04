@@ -13,3 +13,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
+
+void menu(void);
+char menuinput(void);

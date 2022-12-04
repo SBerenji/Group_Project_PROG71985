@@ -19,9 +19,9 @@ PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
 }
 
 
-void AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
+void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
-	PSTACK newnode = *list;
+	PSTACK newnode = NULL;
 	//PSTACK previous;
 
 	newnode = (PSTACK)malloc(sizeof(STACK));  //dynamically allocate memory
@@ -32,17 +32,23 @@ void AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, 
 		exit(EXIT_FAILURE);
 	}
 
-	if (isEmpty(list) )
+	if (isEmpty(&list))
+	{
+		newnode->taskdata.tasknumber = 1;
 		*list = newnode; /* first structure */
+	}
 
 	else  /* subsequent structures */
 		//previous->next = current;
 
 	{
 		newnode->next = NULL;
+		newnode->taskdata.tasknumber++;
 	}
 
-	strcpy(newnode->data, newdata);
+	strcpy(newnode->taskdata.tasktitle, titledata);
+	strcpy(newnode->taskdata.taskdescription, descriptdata);
+
 
 	newnode->next = *list;
 
@@ -80,11 +86,11 @@ void AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, 
 
 
 
-void RemoveItem(PSTACK* list, char infoToBeDeleted[])   //should change it
+void RemoveTask(PSTACK* list, char infoToBeDeleted[])   //should change it
 {
 	PSTACK current = *list;
 
-	if (strcmp(current->data, infoToBeDeleted) == 0)
+	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)
 	{
 		if (current->next != NULL)  //info is in head.  and list is greater than 1 element
 			*list = current->next;
@@ -92,11 +98,12 @@ void RemoveItem(PSTACK* list, char infoToBeDeleted[])   //should change it
 			*list = NULL;
 
 		free(current);
+		puts("You deleted the task.");
 		return;
 	}
 
 	PSTACK prev = current;  // we will need the previous node for to link over the deleted one
-	while (current != NULL && current->data != infoToBeDeleted)
+	while (current != NULL && strcmp(current->taskdata.tasktitle, infoToBeDeleted) != 0)
 	{
 		prev = current;
 		current = current->next;
@@ -108,10 +115,10 @@ void RemoveItem(PSTACK* list, char infoToBeDeleted[])   //should change it
 		return;  //wasn't found - and we hit the end
 	}
 		
-
 	prev->next = current->next; //unlink the node from the list
 
 	free(current);  // Free memory 
+	puts("You deleted the task.");
 }
 
 
@@ -125,24 +132,24 @@ bool isEmpty(PSTACK* list)  //isEmpty function definition
 
 
 
-void Display(PSTACK list)
-{
-	PSTACK current = list;
-	if (!current)
-	{
-		puts("There are no tasks to display");
-		return;
-	}// list is empty, don't print!
-		;
-
-	do
-	{
-		printf("%s", current->data);
-		current = current->next;
-	} while (current != NULL);
-
-	printf("\n");
-}
+//void Display(PSTACK list)
+//{
+//	PSTACK current = list;
+//	if (!current)
+//	{
+//		puts("There are no tasks to display");
+//		return;
+//	}// list is empty, don't print!
+//		;
+//
+//	do
+//	{
+//		printf("%s", current->data);
+//		current = current->next;
+//	} while (current != NULL);
+//
+//	printf("\n");
+//}
 
 
 

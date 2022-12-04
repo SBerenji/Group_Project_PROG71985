@@ -11,6 +11,7 @@
 
 #include "calendar.h"
 #include "menu.h"
+#include "input.h"
 
 
 int main(void)
@@ -19,7 +20,8 @@ int main(void)
 	//PSTACK current;
 
 	char choice;
-	char string[MAXLEN];
+	char title[TITLE];
+	char desc[MAXLEN];
 
 	
 	while ((choice = menuinput()) != 'h')  //call the menuinput function and exit the loop if the input is 'f'
@@ -28,10 +30,14 @@ int main(void)
 		switch (choice)  //using switch case statement for the menu options
 		{
 		case 'a':
-			puts("Pleases enter your new task");
-			GetString(string, MAXLEN);
-			AddAppt(&list, string);
-			printf("This is what you entered: %s\n", &list->data);
+			puts("Pleases enter a single-word title for your task e.g Gym'");
+			GetString(title, TITLE);
+			puts("Now please enter the description of your task:");
+			GetString(desc, MAXLEN);
+			AddTask(&list, title, desc);
+
+			printf("This is what you entered\nTitle: %s\nDescription: %s\nTask number: %d", 
+				&list->taskdata.tasktitle, &list->taskdata.taskdescription, &list->taskdata.tasknumber);
 			
 			if (isEmpty(&list))
 				puts("Yes it is empty");
@@ -40,9 +46,9 @@ int main(void)
 			break;
 			
 		case 'b':
-			puts("Pleases the task you want to delete");
-			GetString(string, MAXLEN);
-			RemoveItem(&list, string);
+			puts("Pleases enter the title of the task you want to delete");
+			GetString(title, MAXLEN);
+			RemoveTask(&list, title);
 			if (isEmpty(&list))
 				puts("Yes it is empty");
 			else
@@ -50,7 +56,7 @@ int main(void)
 			break;
 
 		case 'c':
-			
+
 			break;
 
 		case 'd':
@@ -61,7 +67,7 @@ int main(void)
 		
 		case 'f':
 			puts("Here are all your tasks:");
-			Display(list);
+			//Display(list);
 			break;
 		
 		case 'g':
@@ -96,6 +102,11 @@ int main(void)
 	//printf("\n");
 
 	free(list);
+
+	if (isEmpty(&list))
+		puts("Yes it is empty");
+	else
+		puts("no it is not empty");
 
 	return 0;
 }
