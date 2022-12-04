@@ -10,6 +10,7 @@
 ******************************************************************************/
 
 #include "calendar.h"
+#include "menu.h"
 
 
 int main(void)
@@ -32,16 +33,20 @@ int main(void)
 			AddAppt(&list, string);
 			printf("This is what you entered: %s\n", &list->data);
 			
-			/*if (isEmpty(&list))
+			if (isEmpty(&list))
 				puts("Yes it is empty");
 			else
-				puts("no it is not empty");*/
+				puts("no it is not empty");
 			break;
 			
 		case 'b':
 			puts("Pleases the task you want to delete");
 			GetString(string, MAXLEN);
 			RemoveItem(&list, string);
+			if (isEmpty(&list))
+				puts("Yes it is empty");
+			else
+				puts("no it is not empty");
 			break;
 
 		case 'c':
@@ -56,7 +61,7 @@ int main(void)
 		
 		case 'f':
 			puts("Here are all your tasks:");
-			Display(&list);
+			Display(list);
 			break;
 		
 		case 'g':

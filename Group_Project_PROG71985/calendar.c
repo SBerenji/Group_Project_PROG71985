@@ -12,44 +12,11 @@
 #include "calendar.h"
 
 
-void menu(void)  //menu function definition which prints out the menu options
-{
-	puts("\nPlease choose from the menu below:");
-	puts("a) Add a new appt");
-	puts("b) Delete an existing appt");
-	puts("c) Update an existing appt ");
-	puts("d) Display single appt");
-	puts("e) Display range appt");
-	puts("f) Display all appt");
-	puts("g) Search for appt");
-	puts("h) QUIT \n");
-		
-}
-
-char menuinput(void) //menuinput function definition
-{
-	char option;
-	menu();  //calling the menu function
-
-	if (scanf(" %c", &option) == 1)  //get user input
-	{
-		while ((getchar()) != '\n');  //discard the newline character
-	}
-	return option;
-	
-}
-
-
-
-
-
 PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
 {
 	list = NULL;  //Initialize the list to NULL and the return the list
 	return list;
 }
-
-
 
 
 void AddAppt(PSTACK* list, char* newdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
@@ -154,22 +121,6 @@ bool isEmpty(PSTACK* list)  //isEmpty function definition
 		return true;
 	else
 		return false;
-}
-
-
-void GetString(char* str, int max)   //GetString function definition that gets the string from user
-{                                    //No validation included as the instruction asked for string (a sequence of characters)
-									//and did not ask for a certain kind of string like a name
-
-	if (fgets(str, max, stdin) != NULL)
-	{
-
-		for (int i = 0; i < strlen(str); i++)
-		{
-			if (str[i] == '\n')
-				str[i] = '\0';
-		}
-	}
 }
 
 
