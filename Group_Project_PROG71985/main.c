@@ -42,7 +42,7 @@ int main(void)
 			break;
 
 		case 'c':
-			UpdateTask(&list, title);
+			UpdateTask(&list);
 			break;
 
 		case 'd':

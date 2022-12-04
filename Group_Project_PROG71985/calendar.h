@@ -81,7 +81,7 @@ void DisplayRange(PSTACK list, int minimum, int maximum);
 
 void Swaps(int* firstnumber, int* secondnumber);
 
-void UpdateTask(PSTACK* list, char* tasktoupdate[]);
+void UpdateTask(PSTACK* list);
 
 void SelectWhatToUpdate(PSTACK current);
 void TaskCount(PSTACK list);

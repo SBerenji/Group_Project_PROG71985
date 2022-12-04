@@ -139,6 +139,7 @@ void DisplaySingleTask(PSTACK list)  //should void DisplaySingleTask(PSTACK list
 {
 	PSTACK current = list;
 	char infotodisplay[TITLE];
+	bool found = false;
 
 	if (isEmpty(&list))
 	{
@@ -152,16 +153,22 @@ void DisplaySingleTask(PSTACK list)  //should void DisplaySingleTask(PSTACK list
 	do
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
+		{
 			//printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
 			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+			found = true;  //added so the message ""This task does not exist on your list" would not be displayed after printing the desired task
+		}
+			
 		current = current->next;
+
 	} while (current != NULL);
 
-	if (current == NULL)  //added this part - Saba
+	if (current == NULL && !found)  //added this part - Saba
 	{
 		puts("This task does not exist on your list");
 		return;
 	}
+
 }
 
 void TaskCount(PSTACK list)
@@ -230,7 +237,7 @@ void UpdateTask(PSTACK* list)
 	PSTACK current = *list;
 	char tasktoupdate[TITLE];
 
-	if (!current)
+	if (isEmpty(&list))
 	{
 		puts("There is no task on the list to update");
 		return;
@@ -247,13 +254,15 @@ void UpdateTask(PSTACK* list)
 			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 			SelectWhatToUpdate(current);
 		}
-		else
-			printf("This task does not exist\n");
+			
 		current = current->next;
 	} while (current != NULL);
 
+ if(current == NULL)
+		printf("This task does not exist\n");
 	printf("\n");
 }
+
 
 void SelectWhatToUpdate(PSTACK current)
 {
@@ -284,5 +293,4 @@ void SelectWhatToUpdate(PSTACK current)
 		}
 	}
 }
-
 
