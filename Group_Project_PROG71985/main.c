@@ -95,5 +95,7 @@ int main(void)
 
 	//printf("\n");
 
+	free(list);
+
 	return 0;
 }

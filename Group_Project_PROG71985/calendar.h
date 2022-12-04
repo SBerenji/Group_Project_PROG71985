@@ -17,13 +17,23 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAXLEN 1000  //maximum number of characters the user can enter
+#define TITLE 20
+
+typedef struct task
+{
+	int tasknumber;
+	char tasktitle[TITLE];
+	char taskdescription[MAXLEN];
+} TASK;
 
 
 typedef struct stack
 {
-	char data[MAXLEN];
+	TASK taskdata;
 	struct stack* next;
 } STACK, * PSTACK;
+
+
 
 
 
