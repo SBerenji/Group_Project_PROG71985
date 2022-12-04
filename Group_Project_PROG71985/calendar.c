@@ -316,7 +316,5 @@ void SearchForTask(PSTACK list)
 		current = current->next;
 	} while (current != NULL);
 
-	if (current == NULL)
-		printf("This task is not on your list.\n");
 	printf("\n");
 }
