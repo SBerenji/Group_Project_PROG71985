@@ -15,3 +15,5 @@
 #define MAXLEN 1000  //maximum number of characters the user can enter
 
 void GetString(char str[], int max);
+
+void GetRange(int firstnumber, int secondnumber);

@@ -60,14 +60,17 @@ int main(void)
 			break;
 
 		case 'd':
+			puts("Select which task you want to display by entering its title: ");
+			GetString(title, MAXLEN);
+			DisplaySingleTask(list, title);
 			break;
-
 		case 'e':
+			puts("Select range of tasks you want to display (eg. Task 1-5): ");
+			ValidateAndPrintRange(list);
 			break;
-		
 		case 'f':
 			puts("Here are all your tasks:");
-			//Display(list);
+			DisplayAll(list);
 			break;
 		
 		case 'g':

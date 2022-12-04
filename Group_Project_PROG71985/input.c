@@ -8,6 +8,7 @@
 ******************************************************************************/
 
 #include "menu.h"
+#include "calendar.h"
 
 
 void GetString(char str[], int max)   //GetString function definition that gets the string from user
@@ -25,3 +26,14 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 	}
 }
 
+
+void GetRange(int firstnumber, int secondnumber)
+{
+	while (scanf_s("%d %d", &firstnumber, &secondnumber) == 2)
+	{
+		if (firstnumber > secondnumber)
+		{
+			Swaps(&firstnumber, &secondnumber);
+		}
+	}
+}

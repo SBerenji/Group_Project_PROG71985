@@ -71,3 +71,14 @@ bool isEmpty(PSTACK* list);
 //void Display(PSTACK list);
 
 void GetString(char* str, int max);  //GetString function prototype
+
+
+void DisplayAll(PSTACK list);
+
+void DisplaySingleTask(PSTACK list, char* infotodisplay[]);
+
+void ValidateAndPrintRange(PSTACK list);
+
+void DisplayRange(PSTACK list, int minimum, int maximum);
+
+void Swaps(int* firstnumber, int* secondnumber);

@@ -10,6 +10,7 @@
 ******************************************************************************/
 
 #include "calendar.h"
+#include "input.h"
 
 
 PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
@@ -150,6 +151,82 @@ bool isEmpty(PSTACK* list)  //isEmpty function definition
 //
 //	printf("\n");
 //}
+
+
+
+void DisplayAll(PSTACK list)
+{
+
+	PSTACK current = list;
+	if (isEmpty(list)) //!current)
+	{
+		puts("There are no tasks to display");
+		return;
+	}// list is empty, don't print!
+
+	do
+	{
+		printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+		current = current->next;
+	} while (current != NULL);
+
+	printf("\n");
+}
+
+
+void DisplaySingleTask(PSTACK list, char* infotodisplay[])
+{
+	PSTACK current = list;
+	if (!current)
+	{
+		puts("There are no tasks to display");
+		return;
+	}// list is empty, don't print!
+
+	do
+	{
+		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
+			printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+		current = current->next;
+	} while (current != NULL);
+
+	printf("\n");
+}
+
+void ValidateAndPrintRange(PSTACK list)
+{
+	PSTACK current = list;
+	int firstinput = '\0';
+	int secondinput = '\0';
+
+	GetRange(firstinput, secondinput);
+
+	if (firstinput < 1 || secondinput > current->taskdata.tasknumber)
+	{
+		puts("Invalid range.\n");
+	}
+	else
+	{
+		DisplayRange(list, firstinput, secondinput);
+	}
+
+}
+
+void Swaps(int* firstnumber, int* secondnumber)
+{
+	int temporary = *firstnumber;
+	*firstnumber = *secondnumber;
+	*secondnumber = temporary;
+}
+
+void DisplayRange(PSTACK list, int firstnumber, int secondnumber)
+{
+	PSTACK current = list;
+	for (int i = firstnumber; i <= secondnumber; i++)
+	{
+		puts("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+	}
+}
 
 
 
