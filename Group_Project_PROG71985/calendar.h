@@ -82,3 +82,10 @@ void ValidateAndPrintRange(PSTACK list);
 void DisplayRange(PSTACK list, int minimum, int maximum);
 
 void Swaps(int* firstnumber, int* secondnumber);
+
+void UpdateTask(PSTACK* list, char* tasktoupdate[]);
+
+void SelectWhatToUpdate(PSTACK current);
+
+
+

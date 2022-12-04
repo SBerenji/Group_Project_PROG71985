@@ -11,6 +11,7 @@
 
 #include "calendar.h"
 #include "input.h"
+#include "menu.h"
 
 
 PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
@@ -166,7 +167,7 @@ void DisplayAll(PSTACK list)
 
 	do
 	{
-		printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+		printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 		current = current->next;
 	} while (current != NULL);
 
@@ -186,7 +187,9 @@ void DisplaySingleTask(PSTACK list, char* infotodisplay[])
 	do
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
-			printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+		else
+			printf("This task does not exist\n");
 		current = current->next;
 	} while (current != NULL);
 
@@ -224,15 +227,65 @@ void DisplayRange(PSTACK list, int firstnumber, int secondnumber)
 	PSTACK current = list;
 	for (int i = firstnumber; i <= secondnumber; i++)
 	{
-		puts("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+		puts("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 	}
 }
 
 
+void UpdateTask(PSTACK* list, char* tasktoupdate[])
+{
+	PSTACK current = *list;
+	if (!current)
+	{
+		puts("There are no tasks to display");
+		return;
+	}// list is empty, don't print!
 
+	do
+	{
+		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
+		{
+			printf("This is the task you have selected:\n");
+			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+			SelectWhatToUpdate(current);
+		}
+		else
+			printf("This task does not exist\n");
+		current = current->next;
+	} while (current != NULL);
 
+	printf("\n");
+}
 
-
+void SelectWhatToUpdate(PSTACK current)
+{
+	char choice;
+	char title[TITLE];
+	char description[MAXLEN];
+	UpdateMenu();
+	while ((choice = menuinput()) != 'c')  //call the menuinput function and exit the loop if the input is 'f'
+	{
+		switch (choice)  //using switch case statement for the menu options
+		{
+		case 'a':
+			printf("Enter the new task title: \n");
+			GetString(title, MAXLEN);
+			strcpy(current->taskdata.tasktitle, title);
+			UpdateMenu();
+			break;
+		case 'b':
+			printf("Enter the new task description: \n");
+			GetString(description, MAXLEN);
+			strcpy(current->taskdata.taskdescription, description);
+			UpdateMenu();
+			break;
+		default:
+			puts("\nInvalid input!");  //print when the user chooses an invalid option from the menu
+			puts("Please try again.");
+			UpdateMenu();
+		}
+	}
+}
 
 
 

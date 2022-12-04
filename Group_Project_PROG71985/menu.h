@@ -16,3 +16,4 @@
 
 void menu(void);
 char menuinput(void);
+void UpdateMenu(void);

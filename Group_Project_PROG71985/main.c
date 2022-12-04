@@ -23,7 +23,7 @@ int main(void)
 	char title[TITLE];
 	char desc[MAXLEN];
 
-	
+	menu();
 	while ((choice = menuinput()) != 'h')  //call the menuinput function and exit the loop if the input is 'f'
 	{
 
@@ -36,8 +36,8 @@ int main(void)
 			GetString(desc, MAXLEN);
 			AddTask(&list, title, desc);
 
-			printf("This is what you entered\nTitle: %s\nDescription: %s\nTask number: %d", 
-				&list->taskdata.tasktitle, &list->taskdata.taskdescription, &list->taskdata.tasknumber);
+			printf("This is what you entered\nTitle: %s\nDescription: %s\n", 
+				&list->taskdata.tasktitle, &list->taskdata.taskdescription);
 			
 			if (isEmpty(&list))
 				puts("Yes it is empty");
@@ -56,7 +56,9 @@ int main(void)
 			break;
 
 		case 'c':
-
+			puts("Select which task you want to update by entering its title: ");
+			GetString(title, MAXLEN);
+			UpdateTask(&list, title);
 			break;
 
 		case 'd':
@@ -81,6 +83,7 @@ int main(void)
 			puts("Please try again.");
 
 		}
+		menu();
 	}
 	//PSTACK list = InitializeStack(&list);  //Initialize the list;
 	//char tempstr[MAXLEN];
