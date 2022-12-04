@@ -14,7 +14,7 @@
 void menu(void)  //menu function definition which prints out the menu options
 {
 	printf("------------------------------------------\n");
-	puts("Please choose from the menu below:");
+	puts("\nPlease choose from the menu below:");
 	puts("a) Add a new task");
 	puts("b) Delete an existing task");
 	puts("c) Update an existing task ");
@@ -22,7 +22,8 @@ void menu(void)  //menu function definition which prints out the menu options
 	puts("e) Display range task");
 	puts("f) Display all task");
 	puts("g) Search for task");
-	puts("h) QUIT");
+	puts("h) Number of items on the list");
+	puts("i) QUIT \n");
 	printf("------------------------------------------\n");
 
 }
@@ -43,7 +44,7 @@ char menuinput(void) //menuinput function definition
 void UpdateMenu(void)
 {
 	printf("------------------------------------------\n");
-	puts("How would you like to update this task. Chose from the menu below:");
+	puts("How would you like to update this task. Choose from the menu below:");
 	printf("a) Update task title\n");
 	printf("b) Update description of task\n");
 	printf("c) Return to main menu\n");

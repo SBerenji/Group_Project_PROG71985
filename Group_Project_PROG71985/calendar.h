@@ -60,7 +60,7 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[]); //PushToSatck
 /*                  stack                                                */
 
 //void PopFromStack(PSTACK* list);  //PopFromStack function prototype
-void RemoveTask(PSTACK* list, char infoToBeDeleted[]);
+void RemoveTask(PSTACK* list);
 //
 /////* operation:       check if stack is empty                       */
 /////* precondition:    list points to previously initialized stack   */
@@ -70,12 +70,10 @@ bool isEmpty(PSTACK* list);
 
 //void Display(PSTACK list);
 
-void GetString(char* str, int max);  //GetString function prototype
-
 
 void DisplayAll(PSTACK list);
 
-void DisplaySingleTask(PSTACK list, char* infotodisplay[]);
+void DisplaySingleTask(PSTACK list);
 
 void ValidateAndPrintRange(PSTACK list);
 
@@ -86,6 +84,4 @@ void Swaps(int* firstnumber, int* secondnumber);
 void UpdateTask(PSTACK* list, char* tasktoupdate[]);
 
 void SelectWhatToUpdate(PSTACK current);
-
-
-
+void TaskCount(PSTACK list);

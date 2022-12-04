@@ -27,6 +27,7 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 }
 
 
+
 void GetRange(int firstnumber, int secondnumber)
 {
 	while (scanf_s("%d %d", &firstnumber, &secondnumber) == 2)

@@ -36,7 +36,7 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck
 
 	if (isEmpty(&list))
 	{
-		newnode->taskdata.tasknumber = 1;
+		//newnode->taskdata.tasknumber = 1;
 		*list = newnode; /* first structure */
 	}
 
@@ -56,47 +56,29 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck
 
 	*list = newnode;
 
-	//int size = sizeof(newdata);
-	//int length = size / sizeof(newdata[0]);
+	puts("The task has been added to your task manager");
 
-	//for (int i = 0; i < length; i++)
-	//{
-	//	current->data[i] = newdata[i];
-	//}
-	//previous = current;
-	
-	//puts("The task has been added to your task manager");
 }
 
-
-//void AddItem(PSTACK* list, int newInfo)   //may use this function instead
-//{
-//	PSTACK new_node = *list;
-//
-//	new_node = (PSTACK)malloc(sizeof(STACK));
-//	if (!new_node)
-//	{
-//		fprintf(stderr, "error allocating memory\n");
-//		exit(EXIT_FAILURE);
-//	}
-//	new_node->data = newInfo;
-//	new_node->next = *list;
-//
-//	*list = new_node;
-//}
-
-
-
-
-void RemoveTask(PSTACK* list, char infoToBeDeleted[])   //should change it
+void RemoveTask(PSTACK* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
 {
 	PSTACK current = *list;
+	char infoToBeDeleted[TITLE];
+
+
+	if (isEmpty(&list))
+	{
+		puts("There are no tasks to display");
+		return;
+	}
+	puts("Pleases enter the title of the task you want to delete");
+	GetString(infoToBeDeleted, TITLE);
 
 	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)
 	{
-		if (current->next != NULL)  //info is in head.  and list is greater than 1 element
+		if (current->next != NULL)  
 			*list = current->next;
-		else   //i think that this is what should happen if there is only the single element (and we delete it)
+		else   
 			*list = NULL;
 
 		free(current);
@@ -134,66 +116,77 @@ bool isEmpty(PSTACK* list)  //isEmpty function definition
 
 
 
-//void Display(PSTACK list)
-//{
-//	PSTACK current = list;
-//	if (!current)
-//	{
-//		puts("There are no tasks to display");
-//		return;
-//	}// list is empty, don't print!
-//		;
-//
-//	do
-//	{
-//		printf("%s", current->data);
-//		current = current->next;
-//	} while (current != NULL);
-//
-//	printf("\n");
-//}
-
-
-
 void DisplayAll(PSTACK list)
 {
-
 	PSTACK current = list;
-	if (isEmpty(list)) //!current)
+	if (isEmpty(&list))
 	{
 		puts("There are no tasks to display");
 		return;
-	}// list is empty, don't print!
+	}
 
+	puts("Your task list from most recent to the first task you added");
 	do
 	{
-		printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+		//printf("Task number: \nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 		current = current->next;
 	} while (current != NULL);
 
-	printf("\n");
 }
 
-
-void DisplaySingleTask(PSTACK list, char* infotodisplay[])
+void DisplaySingleTask(PSTACK list)  //should void DisplaySingleTask(PSTACK list, const int max)
 {
 	PSTACK current = list;
-	if (!current)
+	char infotodisplay[TITLE];
+
+	if (isEmpty(&list))
 	{
 		puts("There are no tasks to display");
 		return;
-	}// list is empty, don't print!
+	}
+
+	puts("Select which task you want to display by entering its title: ");
+	GetString(infotodisplay, TITLE);
 
 	do
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
-			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-		else
-			printf("This task does not exist\n");
+			//printf("Task number: %d\nTask title: %s\nTask description: %s\n", current->taskdata.tasknumber, current->taskdata.tasktitle, current->taskdata.taskdescription);
+			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 		current = current->next;
 	} while (current != NULL);
 
-	printf("\n");
+	if (current == NULL)  //added this part - Saba
+	{
+		puts("This task does not exist on your list");
+		return;
+	}
+}
+
+void TaskCount(PSTACK list)
+{
+	int count = 0;
+
+	PSTACK current = list;
+
+	if (isEmpty(&list))
+	{
+		puts("There are no tasks to display");
+		return;
+	}
+
+	do
+	{
+		count++;
+		current = current->next;
+	} while (current != NULL);
+
+	if (count == 1)
+		puts("There is 1 item on the list\n");
+
+	else
+		printf("There are %d items on your list.\n", count);
 }
 
 void ValidateAndPrintRange(PSTACK list)
@@ -232,14 +225,19 @@ void DisplayRange(PSTACK list, int firstnumber, int secondnumber)
 }
 
 
-void UpdateTask(PSTACK* list, char* tasktoupdate[])
+void UpdateTask(PSTACK* list)
 {
 	PSTACK current = *list;
+	char tasktoupdate[TITLE];
+
 	if (!current)
 	{
-		puts("There are no tasks to display");
+		puts("There is no task on the list to update");
 		return;
-	}// list is empty, don't print!
+	}
+
+	puts("Select which task you want to update by entering its title: ");
+	GetString(tasktoupdate, TITLE);
 
 	do
 	{
@@ -288,21 +286,3 @@ void SelectWhatToUpdate(PSTACK current)
 }
 
 
-
-
-//
-//
-//void PopFromStack(PSTACK* list)  //PopFromStack funtion definition, this function removes the topmost element from the stack and returns its value
-//{
-//	PSTACK current = *list;
-//	char info;
-//
-//	if (!isEmpty(current))  //if current is not empty
-//	{
-//		*list = current->link;
-//		info = current->data;
-//		free(current);  //remove current from stack
-//	}
-//}
-//
-//
