@@ -294,3 +294,29 @@ void SelectWhatToUpdate(PSTACK current)
 	}
 }
 
+
+void SearchForTask(PSTACK list)
+{
+	PSTACK current = list;
+	char infotodisplay[TITLE];
+
+	if (isEmpty(&list))
+	{
+		puts("There are no tasks on your list");
+		return;
+	}
+
+	puts("Select which task you want to search for:");
+	GetString(infotodisplay, TITLE);
+
+	do
+	{
+		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
+			printf("This task is on your list.\n");
+		current = current->next;
+	} while (current != NULL);
+
+	if (current == NULL)
+		printf("This task is not on your list.\n");
+	printf("\n");
+}

@@ -85,3 +85,5 @@ void UpdateTask(PSTACK* list);
 
 void SelectWhatToUpdate(PSTACK current);
 void TaskCount(PSTACK list);
+
+void SearchForTask(PSTACK list);

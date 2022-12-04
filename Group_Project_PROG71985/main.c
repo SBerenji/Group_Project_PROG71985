@@ -57,6 +57,7 @@ int main(void)
 			break;
 		
 		case 'g':
+			SearchForTask(list);
 			break;
 		
 		case 'h':
