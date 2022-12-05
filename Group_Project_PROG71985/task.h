@@ -27,11 +27,11 @@ typedef struct task
 } TASK;
 
 
-typedef struct stack
+typedef struct listnode
 {
 	TASK taskdata;
 	struct stack* next;
-} STACK, * PSTACK;
+} LISTNODE, * PLISTNODE;
 
 
 
@@ -44,13 +44,13 @@ char menuinput(void);
 /* operation:       initialize the stack                       */
 /* precondition:    list points to a stack                     */
 /* postcondition:   stack is initialized to being empty (NULL) */
-PSTACK InitializeStack(PSTACK list);  //InitializeStack function prototype
+PLISTNODE InitializeStack(PLISTNODE list);  //InitializeStack function prototype
 
 
 /* operation:       push the item onto top of stack                  */
 /* precondition:    list points to the previously initialized stack  */
 /*                  item is to be placed on top of stack             */
-void AddTask(PSTACK* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
+void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
 
 
 /* operation:       remove item from top of the stack                    */
@@ -60,30 +60,30 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[]); //PushToSatck
 /*                  stack                                                */
 
 //void PopFromStack(PSTACK* list);  //PopFromStack function prototype
-void RemoveTask(PSTACK* list);
+void RemoveTask(PLISTNODE* list);
 //
 /////* operation:       check if stack is empty                       */
 /////* precondition:    list points to previously initialized stack   */
 /////* postcondition:   returns True if stack is empty, else False    */
-bool isEmpty(PSTACK* list);
+bool isEmpty(PLISTNODE* list);
 
 
 //void Display(PSTACK list);
 
 
-void DisplayAll(PSTACK list);
+void DisplayAll(PLISTNODE list);
 
-void DisplaySingleTask(PSTACK list);
+void DisplaySingleTask(PLISTNODE list);
 
-void ValidateAndPrintRange(PSTACK list);
+void ValidateAndPrintRange(PLISTNODE list);
 
-void DisplayRange(PSTACK list, int minimum, int maximum);
+void DisplayRange(PLISTNODE list, int minimum, int maximum);
 
 void Swaps(int* firstnumber, int* secondnumber);
 
-void UpdateTask(PSTACK* list);
+void UpdateTask(PLISTNODE* list);
 
-void SelectWhatToUpdate(PSTACK current);
-void TaskCount(PSTACK list);
+void SelectWhatToUpdate(PLISTNODE current);
+void TaskCount(PLISTNODE list);
 
-void SearchForTask(PSTACK list);
+void SearchForTask(PLISTNODE list);

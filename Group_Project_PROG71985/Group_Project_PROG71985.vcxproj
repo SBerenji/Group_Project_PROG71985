@@ -127,14 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="calendar.c" />
+    <ClCompile Include="task.c" />
     <ClCompile Include="fileio.c" />
     <ClCompile Include="input.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="menu.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="calendar.h" />
+    <ClInclude Include="task.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="menu.h" />
   </ItemGroup>

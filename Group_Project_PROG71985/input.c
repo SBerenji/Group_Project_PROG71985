@@ -8,7 +8,7 @@
 ******************************************************************************/
 
 #include "menu.h"
-#include "calendar.h"
+#include "task.h"
 
 
 void GetString(char str[], int max)   //GetString function definition that gets the string from user

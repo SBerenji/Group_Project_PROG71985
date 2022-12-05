@@ -18,7 +18,7 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calendar.c">
+    <ClCompile Include="task.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="menu.c">
@@ -32,7 +32,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="calendar.h">
+    <ClInclude Include="task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menu.h">

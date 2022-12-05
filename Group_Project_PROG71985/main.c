@@ -9,14 +9,14 @@
 * DESCRIPTION:                                     *
 ******************************************************************************/
 
-#include "calendar.h"
+#include "task.h"
 #include "menu.h"
 #include "input.h"
 
 
 int main(void)
 {
-	PSTACK list = InitializeStack(&list);
+	PLISTNODE list = InitializeStack(&list);
 	//PSTACK current;
 
 	char choice;

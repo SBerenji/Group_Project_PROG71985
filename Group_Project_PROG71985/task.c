@@ -9,24 +9,24 @@
 * DESCRIPTION:                                     *
 ******************************************************************************/
 
-#include "calendar.h"
+#include "task.h"
 #include "input.h"
 #include "menu.h"
 
 
-PSTACK InitializeStack(PSTACK list)  //InitializeStack function definition
+PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 {
 	list = NULL;  //Initialize the list to NULL and the return the list
 	return list;
 }
 
 
-void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
+void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
-	PSTACK newnode = NULL;
+	PLISTNODE newnode = NULL;
 	//PSTACK previous;
 
-	newnode = (PSTACK)malloc(sizeof(STACK));  //dynamically allocate memory
+	newnode = (PLISTNODE)malloc(sizeof(LISTNODE));  //dynamically allocate memory
 
 	if (newnode == NULL)  //if malloc returns NULL 
 	{
@@ -45,7 +45,7 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck
 
 	{
 		newnode->next = NULL;
-		newnode->taskdata.tasknumber++;
+		//newnode->taskdata.tasknumber++;
 	}
 
 	strcpy(newnode->taskdata.tasktitle, titledata);
@@ -60,9 +60,9 @@ void AddTask(PSTACK* list, char titledata[], char descriptdata[])  //PushToSatck
 
 }
 
-void RemoveTask(PSTACK* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
+void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
 {
-	PSTACK current = *list;
+	PLISTNODE current = *list;
 	char infoToBeDeleted[TITLE];
 
 
@@ -86,7 +86,7 @@ void RemoveTask(PSTACK* list)   //void RemoveTask(PSTACK* list, int max)   <- sh
 		return;
 	}
 
-	PSTACK prev = current;  // we will need the previous node for to link over the deleted one
+	PLISTNODE prev = current;  // we will need the previous node for to link over the deleted one
 	while (current != NULL && strcmp(current->taskdata.tasktitle, infoToBeDeleted) != 0)
 	{
 		prev = current;
@@ -106,7 +106,7 @@ void RemoveTask(PSTACK* list)   //void RemoveTask(PSTACK* list, int max)   <- sh
 }
 
 
-bool isEmpty(PSTACK* list)  //isEmpty function definition
+bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 {
 	if (*list == NULL)  //return true if stack is empty
 		return true;
@@ -116,9 +116,9 @@ bool isEmpty(PSTACK* list)  //isEmpty function definition
 
 
 
-void DisplayAll(PSTACK list)
+void DisplayAll(PLISTNODE list)
 {
-	PSTACK current = list;
+	PLISTNODE current = list;
 	if (isEmpty(&list))
 	{
 		puts("There are no tasks to display");
@@ -135,9 +135,9 @@ void DisplayAll(PSTACK list)
 
 }
 
-void DisplaySingleTask(PSTACK list)  //should void DisplaySingleTask(PSTACK list, const int max)
+void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK list, const int max)
 {
-	PSTACK current = list;
+	PLISTNODE current = list;
 	char infotodisplay[TITLE];
 	bool found = false;
 
@@ -171,11 +171,11 @@ void DisplaySingleTask(PSTACK list)  //should void DisplaySingleTask(PSTACK list
 
 }
 
-void TaskCount(PSTACK list)
+void TaskCount(PLISTNODE list)
 {
 	int count = 0;
 
-	PSTACK current = list;
+	PLISTNODE current = list;
 
 	if (isEmpty(&list))
 	{
@@ -196,9 +196,9 @@ void TaskCount(PSTACK list)
 		printf("There are %d items on your list.\n", count);
 }
 
-void ValidateAndPrintRange(PSTACK list)
+void ValidateAndPrintRange(PLISTNODE list)
 {
-	PSTACK current = list;
+	PLISTNODE current = list;
 	int firstinput = '\0';
 	int secondinput = '\0';
 
@@ -222,9 +222,9 @@ void Swaps(int* firstnumber, int* secondnumber)
 	*secondnumber = temporary;
 }
 
-void DisplayRange(PSTACK list, int firstnumber, int secondnumber)
+void DisplayRange(PLISTNODE list, int firstnumber, int secondnumber)
 {
-	PSTACK current = list;
+	PLISTNODE current = list;
 	for (int i = firstnumber; i <= secondnumber; i++)
 	{
 		puts("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
@@ -232,12 +232,13 @@ void DisplayRange(PSTACK list, int firstnumber, int secondnumber)
 }
 
 
-void UpdateTask(PSTACK* list)
+void UpdateTask(PLISTNODE* list)
 {
-	PSTACK current = *list;
+	PLISTNODE current = *list;
 	char tasktoupdate[TITLE];
+	bool found = false;
 
-	if (isEmpty(&list))
+	if (isEmpty(list))
 	{
 		puts("There is no task on the list to update");
 		return;
@@ -258,13 +259,13 @@ void UpdateTask(PSTACK* list)
 		current = current->next;
 	} while (current != NULL);
 
- if(current == NULL)
-		printf("This task does not exist\n");
-	printf("\n");
+
+	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
+		printf("This task does not exist on the list\n");
 }
 
 
-void SelectWhatToUpdate(PSTACK current)
+void SelectWhatToUpdate(PLISTNODE current)
 {
 	char choice;
 	char title[TITLE];
@@ -294,11 +295,11 @@ void SelectWhatToUpdate(PSTACK current)
 	}
 }
 
-
-void SearchForTask(PSTACK list)
+void SearchForTask(PLISTNODE list)
 {
-	PSTACK current = list;
+	PLISTNODE current = list;
 	char infotodisplay[TITLE];
+	bool found = false;
 
 	if (isEmpty(&list))
 	{
@@ -312,9 +313,13 @@ void SearchForTask(PSTACK list)
 	do
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
-			printf("This task is on your list.\n");
+		{
+			found = true;
+			printf("You have this task on your list.\n");
+		}
 		current = current->next;
 	} while (current != NULL);
 
-	printf("\n");
+	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
+		printf("You do NOT have this task on your list\n");
 }
