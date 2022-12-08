@@ -84,6 +84,7 @@ void Swaps(int* firstnumber, int* secondnumber);
 void UpdateTask(PLISTNODE* list);
 
 void SelectWhatToUpdate(PLISTNODE current);
-void TaskCount(PLISTNODE list);
+int TaskCount(PLISTNODE list);
+void PrintTaskCount(int count);
 
 void SearchForTask(PLISTNODE list);

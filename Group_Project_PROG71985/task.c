@@ -14,6 +14,7 @@
 #include "menu.h"
 
 
+
 PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 {
 	list = NULL;  //Initialize the list to NULL and the return the list
@@ -66,7 +67,7 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 	char infoToBeDeleted[TITLE];
 
 
-	if (isEmpty(&list))
+	if (isEmpty(list))
 	{
 		puts("There are no tasks to display");
 		return;
@@ -171,7 +172,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 
 }
 
-void TaskCount(PLISTNODE list)
+int TaskCount(PLISTNODE list)
 {
 	int count = 0;
 
@@ -179,19 +180,34 @@ void TaskCount(PLISTNODE list)
 
 	if (isEmpty(&list))
 	{
-		puts("There are no tasks to display");
-		return;
+		return 0;
 	}
+
+	//while (current != NULL)
+	//{
+	//	current = current->next;
+	//	count++;
+	//}
 
 	do
 	{
 		count++;
 		current = current->next;
 	} while (current != NULL);
+	return count;
 
-	if (count == 1)
+	/*if (count == 1)
 		puts("There is 1 item on the list\n");
 
+	else
+		printf("There are %d items on your list.\n", count);*/
+
+}
+
+void PrintTaskCount(int count)
+{
+	if (count == 1)
+		puts("There is 1 item on the list\n");
 	else
 		printf("There are %d items on your list.\n", count);
 }

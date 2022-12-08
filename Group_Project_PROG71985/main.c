@@ -12,16 +12,20 @@
 #include "task.h"
 #include "menu.h"
 #include "input.h"
+#include "file.h"
 
 
 int main(void)
 {
+
 	PLISTNODE list = InitializeStack(&list);
 	//PSTACK current;
+	ReadFile(&list);
 
 	char choice;
 	char title[TITLE];
 	char desc[MAXLEN];
+	int count;
 
 	menu();
 	while ((choice = menuinput()) != 'i')  //call the menuinput function and exit the loop if the input is 'f'
@@ -61,7 +65,8 @@ int main(void)
 			break;
 		
 		case 'h':
-			TaskCount(list);
+			count = TaskCount(list);
+			PrintTaskCount(count);
 			break;
 
 
@@ -79,6 +84,8 @@ int main(void)
 		puts("Yes it is empty");
 	else
 		puts("no it is not empty");
+
+	WriteFile(&list);
 
 	return 0;
 }
