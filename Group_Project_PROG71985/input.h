@@ -5,7 +5,7 @@
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 November,2022                                               *
-* DESCRIPTION:                                      *
+*		 DESCRIPTION:												         *
 ******************************************************************************/
 
 #define _CRT_SECURE_NO_WARNINGS

@@ -6,7 +6,7 @@
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 November,2022                                               *
-* DESCRIPTION:                                     *
+*		 DESCRIPTION:												         *
 ******************************************************************************/
 
 #include "task.h"
