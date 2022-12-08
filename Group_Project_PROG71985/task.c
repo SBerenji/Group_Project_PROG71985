@@ -251,6 +251,7 @@ void UpdateTask(PLISTNODE* list)
 	{
 		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
 		{
+			found = true;
 			printf("This is the task you have selected:\n");
 			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 			SelectWhatToUpdate(current);

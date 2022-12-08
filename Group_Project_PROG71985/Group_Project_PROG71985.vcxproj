@@ -128,12 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="task.c" />
-    <ClCompile Include="fileio.c" />
+    <ClCompile Include="file.c" />
     <ClCompile Include="input.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="menu.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="file.h" />
     <ClInclude Include="task.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="menu.h" />
