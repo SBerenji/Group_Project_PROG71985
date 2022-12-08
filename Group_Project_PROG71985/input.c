@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 /*****************************************************************************
 *                      PROG71985/ Group Project                              *
 *                    Professor: Steve Hendrikse                              *
@@ -27,14 +28,22 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 }
 
 
-
 void GetRange(int firstnumber, int secondnumber)
 {
-	while (scanf_s("%d %d", &firstnumber, &secondnumber) == 2)
-	{
-		if (firstnumber > secondnumber)
+		int i = 0;
+		// int firstnumber = 0;
+		// int secondnumber = 0;
+
+		printf("Enter range ( eg. 1-5)\n");
+		printf("Enter minimum: ");
+		scanf_s("%d", &firstnumber);
+		printf("Enter maximum: ");
+		scanf_s("%d", &secondnumber);
+		printf("All characters in range %d to %d are:\n", firstnumber, secondnumber);
+		for (i = firstnumber; i <= secondnumber; ++i)
 		{
-			Swaps(&firstnumber, &secondnumber);
+			printf("%d\n", i);
 		}
-	}
+		// return 0;
+
 }
