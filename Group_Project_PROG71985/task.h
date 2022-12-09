@@ -88,3 +88,5 @@ int TaskCount(PLISTNODE list);
 void PrintTaskCount(int count);
 
 void SearchForTask(PLISTNODE list);
+
+void LastItem(PLISTNODE list);

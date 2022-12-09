@@ -25,6 +25,13 @@ PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
 	PLISTNODE newnode = NULL;
+	if (isEmpty(&list))
+	{
+		//newnode->taskdata.tasknumber = 1;
+		*list = newnode; /* first structure */
+	}
+	
+
 	//PSTACK previous;
 
 	newnode = (PLISTNODE)malloc(sizeof(LISTNODE));  //dynamically allocate memory
@@ -35,11 +42,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 		exit(EXIT_FAILURE);
 	}
 
-	if (isEmpty(&list))
-	{
-		//newnode->taskdata.tasknumber = 1;
-		*list = newnode; /* first structure */
-	}
+
 
 	else  /* subsequent structures */
 		//previous->next = current;
@@ -51,7 +54,6 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 
 	strcpy(newnode->taskdata.tasktitle, titledata);
 	strcpy(newnode->taskdata.taskdescription, descriptdata);
-
 
 	newnode->next = *list;
 
@@ -69,7 +71,7 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 
 	if (isEmpty(list))
 	{
-		puts("There are no tasks to display");
+		puts("There are no tasks to delete");
 		return;
 	}
 	puts("Pleases enter the title of the task you want to delete");
@@ -109,7 +111,8 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 
 bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 {
-	if (*list == NULL)  //return true if stack is empty
+	PLISTNODE current = *list;
+	if (current == NULL)  //return true if stack is empty
 		return true;
 	else
 		return false;
@@ -339,4 +342,26 @@ void SearchForTask(PLISTNODE list)
 
 	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
 		printf("You do NOT have this task on your list\n");
+}
+
+void LastItem(PLISTNODE list)
+{
+	PLISTNODE current = list;
+	int number;
+
+	if (isEmpty(&list))
+	{
+		puts("There are no tasks to display");
+		return;
+	}
+	else
+	{
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		printf("This is the last item you entered: \n");
+		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+	}
+	
 }
