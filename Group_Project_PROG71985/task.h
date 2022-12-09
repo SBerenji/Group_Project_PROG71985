@@ -39,7 +39,7 @@ typedef struct listnode
 
 PLISTNODE InitializeStack(PLISTNODE list);  //InitializeStack function prototype
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
-void RemoveTask(PLISTNODE* list);
+void RemoveTask(PLISTNODE* list); 
 bool isEmpty(PLISTNODE* list);
 void DisplayAll(PLISTNODE list);
 void DisplaySingleTask(PLISTNODE list);/*

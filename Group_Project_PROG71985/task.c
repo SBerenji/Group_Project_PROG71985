@@ -176,7 +176,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 
 
 
-void RangeTask(PLISTNODE list)
+void RangeTask(PLISTNODE list)  // this is to search by range. 
 {
 	PLISTNODE current = list;
 	char letter;
@@ -209,7 +209,7 @@ void RangeTask(PLISTNODE list)
 
 }
 
-int TaskCount(PLISTNODE list)
+int TaskCount(PLISTNODE list)  // this counts the tasks on list 
 {
 	int count = 0;
 
@@ -230,7 +230,7 @@ int TaskCount(PLISTNODE list)
 
 }
 
-void PrintTaskCount(int count)
+void PrintTaskCount(int count)  // this prints task count on list 
 {
 	if (count == 1)
 		puts("There is 1 item on the list\n");
@@ -238,7 +238,7 @@ void PrintTaskCount(int count)
 		printf("There are %d items on your list.\n", count);
 }
 
-void UpdateTask(PLISTNODE* list)
+void UpdateTask(PLISTNODE* list)  // this is to update task 
 {
 	PLISTNODE current = *list;
 	char tasktoupdate[TITLE];
@@ -272,7 +272,7 @@ void UpdateTask(PLISTNODE* list)
 }
 
 
-void SelectWhatToUpdate(PLISTNODE current)
+void SelectWhatToUpdate(PLISTNODE current) // this is to choose option from menu to update
 {
 	char choice;
 	char title[TITLE];
@@ -302,7 +302,7 @@ void SelectWhatToUpdate(PLISTNODE current)
 	}
 }
 
-void SearchForTask(PLISTNODE list)
+void SearchForTask(PLISTNODE list) // this is to search for tast on list 
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
@@ -341,7 +341,7 @@ void SearchForTask(PLISTNODE list)
 
 
 
-void LastItem(PLISTNODE list)
+void LastItem(PLISTNODE list)   // this is to show last item added
 {
 	PLISTNODE current = list;
 	int number;

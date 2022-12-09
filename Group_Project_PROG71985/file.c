@@ -10,9 +10,9 @@
 ******************************************************************************/
 
 
-/*#include "calendar.h" */ // delete later 
+
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>  // delete later
+#include <stdio.h>  
 #include <stdbool.h>
 #include "input.h"
 #include "menu.h"
