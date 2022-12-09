@@ -176,7 +176,7 @@ void RangeTask(PLISTNODE list)
 	if (TaskCount(list) == 0)
 	{
 		puts("There are no tasks on your list to display");
-		return 0;
+		return;
 	}
 
 	puts("Please enter a letter to display the titles starting with that letter");
@@ -297,7 +297,7 @@ void SearchForTask(PLISTNODE list)
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
-	bool found = false;
+	int found = 0;
 
 	if (isEmpty(&list))
 	{
@@ -312,14 +312,22 @@ void SearchForTask(PLISTNODE list)
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
 		{
-			found = true;
-			printf("You have this task on your list.\n");
+			found++;
 		}
 		current = current->next;
 	} while (current != NULL);
 
-	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
-		printf("You do NOT have this task on your list\n");
+	if (current == NULL && found == 0)  //the whole list has been searched and this task does not exist on it
+	{
+		puts("You do NOT have this task on your list\n");
+		return;
+	}
+
+	if (found == 1)
+		puts("You have this task on your list.\n");
+	if(found > 1)
+		printf("You have %d tasks with the same title on your list.\n", found);
+
 }
 
 

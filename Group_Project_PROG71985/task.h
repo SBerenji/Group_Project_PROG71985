@@ -18,7 +18,7 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAXLEN 1000  //maximum number of characters the user can enter
-#define TITLE 20
+#define TITLE  20
 
 typedef struct task
 {
