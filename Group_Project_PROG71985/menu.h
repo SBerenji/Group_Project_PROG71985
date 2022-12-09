@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 
+// what we're promising 
 void menu(void);
 char menuinput(void);
 void UpdateMenu(void);

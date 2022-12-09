@@ -13,7 +13,7 @@
 ******************************************************************************/
 
 
-#include <stdio.h>  // delete later
+#include <stdio.h>  
 #include <stdbool.h>
 #include "input.h"
 #include "menu.h"
@@ -21,7 +21,7 @@
 
 #include <stdlib.h>
 
-
+// what we're promising 
 void WriteFile(PLISTNODE* list);
 void ReadFile(PLISTNODE* list);
 

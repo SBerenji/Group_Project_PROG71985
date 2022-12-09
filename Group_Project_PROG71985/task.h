@@ -20,7 +20,10 @@
 #define MAXLEN 1000  //maximum number of characters the user can enter
 #define TITLE  20
 
-typedef struct task
+
+// what we're promising
+
+typedef struct task   
 {
 	char tasktitle[TITLE];
 	char taskdescription[MAXLEN];
