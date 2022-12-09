@@ -20,7 +20,10 @@
 #define MAXLEN 1000  //maximum number of characters the user can enter
 #define TITLE  20
 
-typedef struct task
+
+// what we're promising
+
+typedef struct task   
 {
 	char tasktitle[TITLE];
 	char taskdescription[MAXLEN];
@@ -36,7 +39,7 @@ typedef struct listnode
 
 PLISTNODE InitializeStack(PLISTNODE list);  //InitializeStack function prototype
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
-void RemoveTask(PLISTNODE* list);
+void RemoveTask(PLISTNODE* list); 
 bool isEmpty(PLISTNODE* list);
 void DisplayAll(PLISTNODE list);
 void DisplaySingleTask(PLISTNODE list);/*
