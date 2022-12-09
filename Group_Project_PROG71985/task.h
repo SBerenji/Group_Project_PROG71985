@@ -4,8 +4,9 @@
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
-*        DATE: 	 November,2022                                               *
-* DESCRIPTION:                                      *
+*        DATE: 	 December,2022                                               *
+* DESCRIPTION:   A user-friendly task manager with a menu containing several *
+*                options to add, remove, display, and update the tasks       *
 ******************************************************************************/
 
 
@@ -17,11 +18,10 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAXLEN 1000  //maximum number of characters the user can enter
-#define TITLE 20
+#define TITLE  20
 
 typedef struct task
 {
-	int tasknumber;
 	char tasktitle[TITLE];
 	char taskdescription[MAXLEN];
 } TASK;
@@ -73,13 +73,13 @@ bool isEmpty(PLISTNODE* list);
 
 void DisplayAll(PLISTNODE list);
 
-void DisplaySingleTask(PLISTNODE list);
+void DisplaySingleTask(PLISTNODE list);/*
 
 void ValidateAndPrintRange(PLISTNODE list);
 
 void DisplayRange(PLISTNODE list, int minimum, int maximum);
 
-void Swaps(int* firstnumber, int* secondnumber);
+void Swaps(int* firstnumber, int* secondnumber);*/
 
 void UpdateTask(PLISTNODE* list);
 
