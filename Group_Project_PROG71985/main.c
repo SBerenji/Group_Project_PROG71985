@@ -29,7 +29,7 @@ int main(void)
 	int count;
 
 	menu();
-	while ((choice = menuinput()) != 'i')  //call the menuinput function and exit the loop if the input is 'f'
+	while ((choice = menuinput()) != 'k')  //call the menuinput function and exit the loop if the input is 'f'
 	{
 
 		switch (choice)  //using switch case statement for the menu options
@@ -70,7 +70,12 @@ int main(void)
 			count = TaskCount(list);
 			PrintTaskCount(count);
 			break;
-
+		case 'i':
+			LastItem(list);
+			break;
+		case 'j':
+			//AlphabeticalList(&list);
+			break;
 		default:
 			puts("\nInvalid input!");  //print when the user chooses an invalid option from the menu
 			puts("Please try again.");

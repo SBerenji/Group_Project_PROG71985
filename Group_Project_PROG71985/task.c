@@ -25,6 +25,14 @@ PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
 	PLISTNODE newnode = NULL;
+	if (isEmpty(&list))
+	{
+		//newnode->taskdata.tasknumber = 1;
+		*list = newnode; /* first structure */
+	}
+	
+
+	//PSTACK previous;
 
 	newnode = (PLISTNODE)malloc(sizeof(LISTNODE));  //dynamically allocate memory
 
@@ -39,6 +47,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 		*list = newnode; /* first structure */
 	}
 
+
 	else  /* subsequent structures */
 	{
 		newnode->next = NULL;
@@ -46,7 +55,6 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 
 	strcpy(newnode->taskdata.tasktitle, titledata);
 	strcpy(newnode->taskdata.taskdescription, descriptdata);
-
 
 	newnode->next = *list;
 
@@ -104,7 +112,8 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 
 bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 {
-	if (*list == NULL)  //return true if stack is empty
+	PLISTNODE current = *list;
+	if (current == NULL)  //return true if stack is empty
 		return true;
 	else
 		return false;
@@ -325,10 +334,35 @@ void SearchForTask(PLISTNODE list)
 
 	if (found == 1)
 		puts("You have this task on your list.\n");
-	if(found > 1)
+	if (found > 1)
 		printf("You have %d tasks with the same title on your list.\n", found);
 
 }
+
+
+
+void LastItem(PLISTNODE list)
+{
+	PLISTNODE current = list;
+	int number;
+
+	if (isEmpty(&list))
+	{
+		puts("There are no tasks to display");
+		return;
+	}
+	else
+	{
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+		printf("This is the last item you entered: \n");
+		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+	}
+	
+}
+
 
 
 
