@@ -43,7 +43,7 @@ int main(void)
 			break;
 
 		case 'b':
-			RemoveTask(&list, TITLE);
+			RemoveTask(&list);
 			break;
 
 		case 'c':

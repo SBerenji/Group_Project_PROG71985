@@ -30,49 +30,15 @@ typedef struct task
 typedef struct listnode
 {
 	TASK taskdata;
-	struct stack* next;
+	struct listnode* next;
 } LISTNODE, * PLISTNODE;
 
 
-
-void menu(void);
-char menuinput(void);
-
-
-
-
-/* operation:       initialize the stack                       */
-/* precondition:    list points to a stack                     */
-/* postcondition:   stack is initialized to being empty (NULL) */
 PLISTNODE InitializeStack(PLISTNODE list);  //InitializeStack function prototype
-
-
-/* operation:       push the item onto top of stack                  */
-/* precondition:    list points to the previously initialized stack  */
-/*                  item is to be placed on top of stack             */
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
-
-
-/* operation:       remove item from top of the stack                    */
-/* precondition:    list points to previously initialized stack          */
-/* postcondition:   if stack is not empty, item at top of                */
-/*                  stack is copied to a char variabel and deleted from  */
-/*                  stack                                                */
-
-//void PopFromStack(PSTACK* list);  //PopFromStack function prototype
 void RemoveTask(PLISTNODE* list);
-//
-/////* operation:       check if stack is empty                       */
-/////* precondition:    list points to previously initialized stack   */
-/////* postcondition:   returns True if stack is empty, else False    */
 bool isEmpty(PLISTNODE* list);
-
-
-//void Display(PSTACK list);
-
-
 void DisplayAll(PLISTNODE list);
-
 void DisplaySingleTask(PLISTNODE list);/*
 
 void ValidateAndPrintRange(PLISTNODE list);
@@ -82,11 +48,8 @@ void DisplayRange(PLISTNODE list, int minimum, int maximum);
 void Swaps(int* firstnumber, int* secondnumber);*/
 
 void UpdateTask(PLISTNODE* list);
-
 void SelectWhatToUpdate(PLISTNODE current);
 int TaskCount(PLISTNODE list);
 void PrintTaskCount(int count);
-
 void SearchForTask(PLISTNODE list);
-
 void RangeTask(PLISTNODE list);
