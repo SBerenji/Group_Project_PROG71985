@@ -88,11 +88,6 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 			free(current);
 			puts("You deleted the task.");
 			return;
-	
-		
-
-		
-
 	}
 
 	PLISTNODE prev = current;  // we will need the previous node for to link over the deleted one
@@ -188,11 +183,14 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 
 
 
-void RangeTask(PLISTNODE list)  // this is to search by range. 
+
+
+
+void RangeTask(PLISTNODE list)
 {
 	PLISTNODE current = list;
-	char letter;
-	int flag = 0; //if flag remains zero than there are zero tasks that match the searched title
+	char letter1, letter2;
+	int flag = 0;
 
 	if (TaskCount(list) == 0) //checks if the list is empty
 	{
@@ -200,26 +198,28 @@ void RangeTask(PLISTNODE list)  // this is to search by range.
 		return;
 	}
 
-	puts("Please enter a letter to display the titles starting with that letter");
-	if (letter = GetLetter()) //get first letter they want to get displayed
+	puts("Please enter two letters to determine the range of the tasks you want to print based on the first letter of their titles:");
+	puts("Letter 1:");
+	if (letter1 = GetLetter())
 	{
-		do
-		{
-			if (current->taskdata.tasktitle[0] == letter)
+		puts("Letter 2:");
+		if (letter2 = GetLetter())
+
+			do
 			{
-				printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-				flag++;
-			}
-			current = current->next;
-		} while (current != NULL);
+				if ((letter1 <= current->taskdata.tasktitle[0]) && (current->taskdata.tasktitle[0] <= letter2))
+				{
+					printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+					flag++;
+				}
+				current = current->next;
+			} while (current != NULL);
 
-		if (flag == 0)
-			puts("There are no titles on your list that start with this letter");
-
+			if (flag == 0)
+				puts("There are no titles on your list that start with these letters");
 	}
-
-
 }
+
 
 int TaskCount(PLISTNODE list)  // this counts the tasks on list 
 {
@@ -292,71 +292,6 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 }
 
 
-
-/*void UpdateTask(PLISTNODE* list)
-{
-	PLISTNODE current = *list;
-	char tasktoupdate[TITLE];
-	bool found = false;
-
-	if (isEmpty(list))
-	{
-		puts("There is no task on the list to update");
-		return;
-	}
-
-	puts("Select which task you want to update by entering its title: ");
-	GetString(tasktoupdate, TITLE);
-
-	int count = 0;
-	do
-	{
-		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0);
-		{
-			found = true;
-			printf("This is the task you have selected:\n");
-			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-			SelectWhatToUpdate(current);
-		}
-
-		current = current->next;
-	} while (current != NULL);
-
-	if (count == 0)
-	{
-		printf("This task does not exist on the list\n");
-	}
-	else if (count == 1)
-	{
-		do
-		{
-			if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
-			{
-				found = true;
-				printf("This is the task you have selected:\n");
-				printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-				SelectWhatToUpdate(current);
-			}
-
-			current = current->next;
-		} while (current != NULL);
-	}
-	else
-	{
-		printf("There are multiple tasks with the same name. You will be shown them in order they appear on the list.\n");
-		do
-		{
-			if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
-			{
-				printf("Here is the first task with the name you searched for. If it is not the one you wanted to update select c.\n");
-				printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-				SelectWhatToUpdate(current);
-			}
-
-			current = current->next;
-		} while (current != NULL);
-	}
-}*/
 
 
 void SelectWhatToUpdate(PLISTNODE current)
@@ -567,3 +502,103 @@ void LastItem(PLISTNODE list)   // this is to show last item added
 //}
 
 
+
+//void RangeTask(PLISTNODE list)  // this is to search by range. 
+//{
+//	PLISTNODE current = list;
+//	char letter;
+//	int flag = 0;
+//
+//	if (TaskCount(list) == 0)
+//	{
+//		puts("There are no tasks on your list to display");
+//		return;
+//	}
+//
+//	puts("Please enter a letter to display the titles starting with that letter");
+//	if (letter = GetLetter())
+//	{
+//		do
+//		{
+//			if (current->taskdata.tasktitle[0] == letter)
+//			{
+//				printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+//				flag++;
+//			}
+//			current = current->next;
+//		} while (current != NULL);
+//
+//		if (flag == 0)
+//			puts("There are no titles on your list that start with this letter");
+//
+//	}
+//
+//
+//}
+
+
+
+/*void UpdateTask(PLISTNODE* list)
+{
+	PLISTNODE current = *list;
+	char tasktoupdate[TITLE];
+	bool found = false;
+
+	if (isEmpty(list))
+	{
+		puts("There is no task on the list to update");
+		return;
+	}
+
+	puts("Select which task you want to update by entering its title: ");
+	GetString(tasktoupdate, TITLE);
+
+	int count = 0;
+	do
+	{
+		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0);
+		{
+			found = true;
+			printf("This is the task you have selected:\n");
+			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+			SelectWhatToUpdate(current);
+		}
+
+		current = current->next;
+	} while (current != NULL);
+
+	if (count == 0)
+	{
+		printf("This task does not exist on the list\n");
+	}
+	else if (count == 1)
+	{
+		do
+		{
+			if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
+			{
+				found = true;
+				printf("This is the task you have selected:\n");
+				printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+				SelectWhatToUpdate(current);
+			}
+
+			current = current->next;
+		} while (current != NULL);
+	}
+	else
+	{
+		printf("There are multiple tasks with the same name. You will be shown them in order they appear on the list.\n");
+		do
+		{
+			if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
+			{
+				printf("Here is the first task with the name you searched for. If it is not the one you wanted to update select c.\n");
+				printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+				SelectWhatToUpdate(current);
+			}
+
+			current = current->next;
+		} while (current != NULL);
+	}
+}*/
