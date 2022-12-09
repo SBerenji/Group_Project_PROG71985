@@ -163,7 +163,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription); //prints the info that matches the searched title
 			found = true;  //added so the message ""This task does not exist on your list" would not be displayed after printing the desired task
 			printf("Was this the task you wanted to display? If yes select y, if no select n\n"); //there could be more than one tasks witht he same title so we want to check if that was the right one
-			char ch = getchar(); 
+			char ch = GetLetter(); 
 			if (ch == 'y')
 				return; //it was the right want so we can exit this function because it was already printed
 			ch = getchar(); 
@@ -254,9 +254,9 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 {
 	PLISTNODE current = *list;
 	char tasktoupdate[TITLE];
-	bool found = false;
+	bool found = false; //this is required for when no items are found in the list and is used at the end of this function
 
-	if (isEmpty(list))
+	if (isEmpty(list)) //checks if there are no tasks on the list
 	{
 		puts("There is no task on the list to update");
 		return;
@@ -264,17 +264,16 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 
 	puts("Select which task you want to update by entering its title: ");
 	GetString(tasktoupdate, TITLE);
-	int count = 1;
 
 	do
 	{
-		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0)
+		if (strcmp(current->taskdata.tasktitle, tasktoupdate) == 0) //if they are identical it will equal 0
 		{
-			found = true;
+			found = true; //change found to true because it was found
 			printf("This is one of the tasks with that name:\n");
 			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 			printf("Is this the task you would like to update? If yes select y, if no select n\n");
-			char ch = getchar();
+			char ch = GetLetter();
 			if (ch == 'y')
 			{
 				SelectWhatToUpdate(current);		
@@ -284,7 +283,7 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 		}
 		
 		current = current->next;
-	} while (current != NULL);
+	} while (current != NULL); //loops through the entire list
 
 
 	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
@@ -294,7 +293,7 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 
 
 
-void SelectWhatToUpdate(PLISTNODE current)
+void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch cases for the update menu 
 {
 	char choice;
 	char title[TITLE];
@@ -307,13 +306,13 @@ void SelectWhatToUpdate(PLISTNODE current)
 		case 'a':
 			printf("Enter the new task title: \n");
 			GetString(title, MAXLEN);
-			strcpy(current->taskdata.tasktitle, title);
+			strcpy(current->taskdata.tasktitle, title); //changes the current title to the newly selected one
 			UpdateMenu();
 			break;
 		case 'b':
 			printf("Enter the new task description: \n");
 			GetString(description, MAXLEN);
-			strcpy(current->taskdata.taskdescription, description);
+			strcpy(current->taskdata.taskdescription, description); //changes the current description to the new one 
 			UpdateMenu();
 			break;
 		default:
@@ -328,11 +327,11 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
-	int found = 0;
+	int found = 0; //found is used to alter the print statement used at the end of this function
 
 	if (isEmpty(&list))
 	{
-		puts("There are no tasks on your list");
+		puts("There are no tasks on your list"); //enters here if there are no tasks on the list
 		return;
 	}
 
@@ -343,10 +342,10 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
 		{
-			found++;
+			found++; //increments by one every time a matching task is found
 		}
 		current = current->next;
-	} while (current != NULL);
+	} while (current != NULL); //iterates through the entire list
 
 	if (current == NULL && found == 0)  //the whole list has been searched and this task does not exist on it
 	{
@@ -355,9 +354,9 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 	}
 
 	if (found == 1)
-		puts("You have this task on your list.\n");
+		puts("You have this task on your list.\n"); //only one was found
 	if (found > 1)
-		printf("You have %d tasks with the same title on your list.\n", found);
+		printf("You have %d tasks with the same title on your list.\n", found); //more than one was found so we put the number as well
 
 }
 
@@ -373,12 +372,12 @@ void LastItem(PLISTNODE list)   // this is to show last item added
 		puts("There are no tasks to display");
 		return;
 	}
-	else
+	else //if list is not empty enters here
 	{
 		while (current->next != NULL)
 		{
 			current = current->next;
-		}
+		} //now current is at the end of the list because we have gone to the point where next is null (end of the list)
 		printf("This is the last item you entered: \n");
 		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 	}

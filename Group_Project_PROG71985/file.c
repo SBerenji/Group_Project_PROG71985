@@ -322,16 +322,6 @@
 
 
 
-
-
-
-
-
-
-/////SABA ADDED
-
-
-
 void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the file created and update the program with its data
 {
 	FILE* filep;  //file pointer
