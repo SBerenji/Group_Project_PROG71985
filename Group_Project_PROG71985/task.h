@@ -42,13 +42,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSa
 void RemoveTask(PLISTNODE* list); 
 bool isEmpty(PLISTNODE* list);
 void DisplayAll(PLISTNODE list);
-void DisplaySingleTask(PLISTNODE list);/*
-
-void ValidateAndPrintRange(PLISTNODE list);
-
-void DisplayRange(PLISTNODE list, int minimum, int maximum);
-
-void Swaps(int* firstnumber, int* secondnumber);*/
+void DisplaySingleTask(PLISTNODE list);
 
 void UpdateTask(PLISTNODE* list);
 void SelectWhatToUpdate(PLISTNODE current);
@@ -58,3 +52,12 @@ void SearchForTask(PLISTNODE list);
 void RangeTask(PLISTNODE list);
 
 void LastItem(PLISTNODE list);
+
+
+/*
+
+void ValidateAndPrintRange(PLISTNODE list);
+
+void DisplayRange(PLISTNODE list, int minimum, int maximum);
+
+void Swaps(int* firstnumber, int* secondnumber);*/

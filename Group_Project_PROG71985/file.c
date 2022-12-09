@@ -371,9 +371,9 @@ void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the 
 				*list = newnode;
 			}
 			else
-				return 0;
+				return;
 
-		} while (filep != EOF);
+		} while (&filep != EOF);
 
 		fclose(filep);  //close the file
 	}
