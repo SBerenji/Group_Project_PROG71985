@@ -129,53 +129,54 @@ bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 void DisplayAll(PLISTNODE list)
 {
 	PLISTNODE current = list;
-	if (isEmpty(&list))
+	if (isEmpty(&list)) //checks if list is empty
 	{
 		puts("There are no tasks to display");
 		return;
 	}
-
-	puts("Your task list:");
-	do
+	else //enters this if the list is not empty
 	{
-		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-		current = current->next;
-	} while (current != NULL);
-
+		puts("Your task list:");
+		do //do while loop because we know there is at least one thing on the list so we will need to print at least one thing
+		{
+			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+			current = current->next; //after it is printed current is changed to the next item on the list
+		} while (current != NULL);
+	}
 }
 
 void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK list, const int max)
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
-	bool found = false;
+	bool found = false; //we use this to determine if the task was ever found on the list or not 
 
-	if (isEmpty(&list))
+	if (isEmpty(&list)) //checks if list is empty
 	{
 		puts("There are no tasks to display");
 		return;
 	}
 
 	puts("Select which task you want to display by entering its title: ");
-	GetString(infotodisplay, TITLE);
+	GetString(infotodisplay, TITLE); //user enters the task title they want to display
 
-	do
+	do //do while loop because we know there is at least one item on the list so we will definitly need to loop at least once
 	{
-		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0)
+		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0) //if they are exactly the same strcmp will return 0
 		{
-			printf("Here is one occurance of this task appearing in your list\n");
-			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
+			printf("Here is one occurance of this task appearing in your list\n"); 
+			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription); //prints the info that matches the searched title
 			found = true;  //added so the message ""This task does not exist on your list" would not be displayed after printing the desired task
-			printf("Was this the task you wanted to display? If yes select y, if no select n\n");
-			char ch = getchar();
+			printf("Was this the task you wanted to display? If yes select y, if no select n\n"); //there could be more than one tasks witht he same title so we want to check if that was the right one
+			char ch = getchar(); 
 			if (ch == 'y')
-				break;
-			ch = getchar();
+				return; //it was the right want so we can exit this function because it was already printed
+			ch = getchar(); 
 		}
 			
-		current = current->next;
+		current = current->next; //move to the next item on the list
 
-	} while (current != NULL);
+	} while (current != NULL); //we want to do this until we reach the end of the list
 
 	if (current == NULL && !found)  //added this part - Saba
 	{
@@ -191,16 +192,16 @@ void RangeTask(PLISTNODE list)  // this is to search by range.
 {
 	PLISTNODE current = list;
 	char letter;
-	int flag = 0;
+	int flag = 0; //if flag remains zero than there are zero tasks that match the searched title
 
-	if (TaskCount(list) == 0)
+	if (TaskCount(list) == 0) //checks if the list is empty
 	{
 		puts("There are no tasks on your list to display");
 		return;
 	}
 
 	puts("Please enter a letter to display the titles starting with that letter");
-	if (letter = GetLetter())
+	if (letter = GetLetter()) //get first letter they want to get displayed
 	{
 		do
 		{
@@ -222,31 +223,31 @@ void RangeTask(PLISTNODE list)  // this is to search by range.
 
 int TaskCount(PLISTNODE list)  // this counts the tasks on list 
 {
-	int count = 0;
+	int count = 0; 
 
 	PLISTNODE current = list;
 
 	if (isEmpty(&list))
 	{
-		return 0;
+		return count; //if list is empty than count will still be zero
 	}
-
-	do
+	else
 	{
-		count++;
-		current = current->next;
-	} while (current != NULL);
-	return count;
-
-
+		do //do while loop because we know there is at least one item on the list and will need to count++ at least once
+		{
+			count++; //count up by one for every iteration (for each item on the list)
+			current = current->next;
+		} while (current != NULL);
+		return count;
+	}
 }
 
-void PrintTaskCount(int count)  // this prints task count on list 
+void PrintTaskCount(int count)  // this is needed to fix the grammar associated with the print statements  
 {
 	if (count == 1)
-		puts("There is 1 item on the list\n");
+		puts("There is 1 item on the list\n"); //"is" since there is only one
 	else
-		printf("There are %d items on your list.\n", count);
+		printf("There are %d items on your list.\n", count); //"are" since there is only one
 }
 
 void UpdateTask(PLISTNODE* list)  // this is to update task 
