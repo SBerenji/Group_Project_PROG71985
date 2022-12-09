@@ -11,6 +11,8 @@
 
 #include "menu.h"
 #include "task.h"
+#include "input.h"
+#include "file.h"
 
 
 void GetString(char str[], int max)   //GetString function definition that gets the string from user
@@ -64,6 +66,18 @@ char GetLetter(void) //menuinput function definition
 
 	while ((getchar()) != '\n');  //discard the newline character
 
+	return option;
+
+}
+
+char menuinput(void) //menuinput function definition
+{
+	char option;
+
+	if (scanf(" %c", &option) == 1)  //get user input
+	{
+		while ((getchar()) != '\n');  //discard the newline character
+	}
 	return option;
 
 }

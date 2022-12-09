@@ -31,17 +31,7 @@ void menu(void)  //menu function definition which prints out the menu options
 
 }
 
-char menuinput(void) //menuinput function definition
-{
-	char option;
 
-	if (scanf(" %c", &option) == 1)  //get user input
-	{
-		while ((getchar()) != '\n');  //discard the newline character
-	}
-	return option;
-
-}
 
 void UpdateMenu(void)
 {

@@ -23,3 +23,5 @@ void GetString(char str[], int max);
 //void GetRange(int firstnumber, int secondnumber);
 
 char GetLetter(void);
+
+char menuinput(void);
