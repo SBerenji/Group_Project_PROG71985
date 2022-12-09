@@ -326,9 +326,20 @@ void SearchForTask(PLISTNODE list)
 		current = current->next;
 	} while (current != NULL);
 
-	if (current == NULL && !found)  //the whole list has been searched and this task does not exist on it
-		printf("You do NOT have this task on your list\n");
+	if (current == NULL && found == 0)  //the whole list has been searched and this task does not exist on it
+	{
+		puts("You do NOT have this task on your list\n");
+		return;
+	}
+
+	if (found == 1)
+		puts("You have this task on your list.\n");
+	if (found > 1)
+		printf("You have %d tasks with the same title on your list.\n", found);
+
 }
+
+
 
 void LastItem(PLISTNODE list)
 {
@@ -351,18 +362,7 @@ void LastItem(PLISTNODE list)
 	}
 	
 }
-	if (current == NULL && found == 0)  //the whole list has been searched and this task does not exist on it
-	{
-		puts("You do NOT have this task on your list\n");
-		return;
-	}
 
-	if (found == 1)
-		puts("You have this task on your list.\n");
-	if(found > 1)
-		printf("You have %d tasks with the same title on your list.\n", found);
-
-}
 
 
 
