@@ -4,8 +4,9 @@
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
-*        DATE: 	 November,2022                                               *
-*		 DESCRIPTION:													     *
+*        DATE: 	 December,2022                                               *
+* DESCRIPTION:   A user-friendly task manager with a menu containing several *
+*                options to add, remove, display, and update the tasks       *
 ******************************************************************************/
 
 #include "menu.h"
@@ -31,7 +32,6 @@ void menu(void)  //menu function definition which prints out the menu options
 char menuinput(void) //menuinput function definition
 {
 	char option;
-  //calling the menu function
 
 	if (scanf(" %c", &option) == 1)  //get user input
 	{

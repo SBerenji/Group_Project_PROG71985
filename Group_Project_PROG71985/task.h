@@ -4,8 +4,9 @@
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
-*        DATE: 	 November,2022                                               *
-*		 DESCRIPTION:													     *
+*        DATE: 	 December,2022                                               *
+* DESCRIPTION:   A user-friendly task manager with a menu containing several *
+*                options to add, remove, display, and update the tasks       *
 ******************************************************************************/
 
 
@@ -21,7 +22,6 @@
 
 typedef struct task
 {
-	int tasknumber;
 	char tasktitle[TITLE];
 	char taskdescription[MAXLEN];
 } TASK;
@@ -73,13 +73,13 @@ bool isEmpty(PLISTNODE* list);
 
 void DisplayAll(PLISTNODE list);
 
-void DisplaySingleTask(PLISTNODE list);
+void DisplaySingleTask(PLISTNODE list);/*
 
 void ValidateAndPrintRange(PLISTNODE list);
 
 void DisplayRange(PLISTNODE list, int minimum, int maximum);
 
-void Swaps(int* firstnumber, int* secondnumber);
+void Swaps(int* firstnumber, int* secondnumber);*/
 
 void UpdateTask(PLISTNODE* list);
 
@@ -88,3 +88,5 @@ int TaskCount(PLISTNODE list);
 void PrintTaskCount(int count);
 
 void SearchForTask(PLISTNODE list);
+
+void RangeTask(PLISTNODE list);

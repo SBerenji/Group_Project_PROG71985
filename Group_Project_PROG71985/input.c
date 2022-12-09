@@ -4,8 +4,9 @@
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
-*        DATE: 	 November,2022                                               *
-*		 DESCRIPTION:												         *
+*        DATE: 	 December,2022                                               *
+* DESCRIPTION:   A user-friendly task manager with a menu containing several *
+*                options to add, remove, display, and update the tasks       *
 ******************************************************************************/
 
 #include "menu.h"
@@ -27,23 +28,42 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 	}
 }
 
+//
+//void GetRange(int firstnumber, int secondnumber)
+//{
+//		int i = 0;
+//		// int firstnumber = 0;
+//		// int secondnumber = 0;
+//
+//		printf("Enter range ( eg. 1-5)\n");
+//		printf("Enter minimum: ");
+//		scanf_s("%d", &firstnumber);
+//		printf("Enter maximum: ");
+//		scanf_s("%d", &secondnumber);
+//		printf("All characters in range %d to %d are:\n", firstnumber, secondnumber);
+//		for (i = firstnumber; i <= secondnumber; ++i)
+//		{
+//			printf("%d\n", i);
+//		}
+//		// return 0;
+//
+//}
 
-void GetRange(int firstnumber, int secondnumber)
+
+
+char GetLetter(void) //menuinput function definition
 {
-		int i = 0;
-		// int firstnumber = 0;
-		// int secondnumber = 0;
+	char option;
 
-		printf("Enter range ( eg. 1-5)\n");
-		printf("Enter minimum: ");
-		scanf_s("%d", &firstnumber);
-		printf("Enter maximum: ");
-		scanf_s("%d", &secondnumber);
-		printf("All characters in range %d to %d are:\n", firstnumber, secondnumber);
-		for (i = firstnumber; i <= secondnumber; ++i)
-		{
-			printf("%d\n", i);
-		}
-		// return 0;
+
+	if ((scanf("%c", &option) != 1) || ((option < 'A' || option < 'a' && option > 'Z') || option > 'z'))
+	{
+		puts("Invalid input");
+		return 0;
+	}
+
+	while ((getchar()) != '\n');  //discard the newline character
+
+	return option;
 
 }

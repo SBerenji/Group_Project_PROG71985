@@ -5,8 +5,9 @@
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
-*        DATE: 	 November,2022                                               *
-*		 DESCRIPTION:												         *
+*        DATE: 	 December,2022                                               *
+* DESCRIPTION:   A user-friendly task manager with a menu containing several *
+*                options to add, remove, display, and update the tasks       *
 ******************************************************************************/
 
 #include "task.h"
@@ -19,8 +20,8 @@ int main(void)
 {
 
 	PLISTNODE list = InitializeStack(&list);
-	//PSTACK current;
-	ReadFile(&list);
+
+	ReadFile(&list);  //read from the file
 
 	char choice;
 	char title[TITLE];
@@ -40,7 +41,7 @@ int main(void)
 			GetString(desc, MAXLEN);
 			AddTask(&list, title, desc);
 			break;
-			
+
 		case 'b':
 			RemoveTask(&list, TITLE);
 			break;
@@ -51,25 +52,24 @@ int main(void)
 
 		case 'd':
 			DisplaySingleTask(list);
+
 			break;
 		case 'e':
-			puts("Select range of tasks you want to display (eg. Task 1-5): ");
-			ValidateAndPrintRange(list);
+			RangeTask(list);
 			break;
+
 		case 'f':
 			DisplayAll(list);
 			break;
-		
+
 		case 'g':
 			SearchForTask(list);
 			break;
-		
+
 		case 'h':
 			count = TaskCount(list);
 			PrintTaskCount(count);
 			break;
-
-
 
 		default:
 			puts("\nInvalid input!");  //print when the user chooses an invalid option from the menu
@@ -78,12 +78,6 @@ int main(void)
 		}
 		menu();
 	}
-
-
-	if (isEmpty(&list))
-		puts("Yes it is empty");
-	else
-		puts("no it is not empty");
 
 	WriteFile(&list);
 
