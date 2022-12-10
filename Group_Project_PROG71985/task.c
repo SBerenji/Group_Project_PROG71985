@@ -59,75 +59,41 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 }
 
 //Saba authored this module
-void RemoveTask(PLISTNODE* list)
+
+void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
 {
 	PLISTNODE current = *list;
 	char infoToBeDeleted[TITLE];
 
-	if (isEmpty(list))  //if the list is empty
+
+	if (isEmpty(list))
 	{
 		puts("There are no tasks to delete");
 		return;
 	}
-
 	puts("Please enter the title of the task you want to delete");
-	GetString(infoToBeDeleted, TITLE);   //get task title from user
+	GetString(infoToBeDeleted, TITLE);
 
-
-	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)  //if the entered title is the same as the title of the last item on the list
+	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)
 	{
-
-		puts("Is this the task you intend to delete?");
-		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription); //prints the info that matches the searched title
-
-		puts("If yes enter 'y' and if no enter 'n'");
-		char ch = getchar();
-		while ((getchar()) != '\n');
-
-		if (ch == 'y')   //since the list can have several tasks with the same title, the user should be asked if he intends to delete this task
-		{
-			if (current->next != NULL)
-				*list = current->next;
-			else
-				*list = NULL;
-
-			free(current);
-			puts("You deleted the task.");
-			return;
-		}
-
+		if (current->next != NULL)
+			*list = current->next;
 		else
-			current = current->next;
+			*list = NULL;
+
+		free(current);
+		puts("You deleted the task.");
+		return;
 	}
 
-	int flag = 0;  //used to not display the wrong message when deleting the first node
-
 	PLISTNODE prev = current;  // we will need the previous node for to link over the deleted one
-	while (current != NULL)
+	while (current != NULL && strcmp(current->taskdata.tasktitle, infoToBeDeleted) != 0)
 	{
-		if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)
-		{
-			puts("Is this the task you intend to delete?");
-			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription); //prints the info that matches the searched title
-
-			puts("If yes enter 'y' and if no enter 'n'");
-			char character = getchar();
-
-			if (character == 'y')
-			{
-				flag++;
-				break;
-			}
-			character = getchar();
-		}
-
 		prev = current;
 		current = current->next;
 	}
 
-
-
-	if (current == NULL && flag == 0)
+	if (current == NULL)
 	{
 		puts("The task that you want to remove from your task manager does not exist");
 		return;  //wasn't found - and we hit the end
@@ -136,8 +102,10 @@ void RemoveTask(PLISTNODE* list)
 	prev->next = current->next; //unlink the node from the list
 
 	free(current);  // Free memory 
-	puts("You deleted the task");
+	puts("You deleted the task.");
 }
+
+
 
 //Saba authored this module
 bool isEmpty(PLISTNODE* list)  //isEmpty function definition
