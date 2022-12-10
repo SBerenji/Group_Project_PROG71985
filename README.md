@@ -9,3 +9,5 @@ Sierra Erb:
 I worked on the DisplayAll, DisplaySingleTask, UpdateTask, SelectWhatToUpdate, TaskCount, PrintTaskCount, SearchForTask, RangeTask, LastItem, WriteFile, ReadFile and the UpdateMenu functions.
 
 
+Michelle Novar:
+I worked on WriteFile, ReadFile, CompareAppt, and GetRange functions. I also worked on the overall design of the program.
