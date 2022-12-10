@@ -153,7 +153,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 		return;
 	}
 
-	puts("Select which task you want to display by entering its title: ");
+	puts("Enter the title of the task you want to display: ");
 	GetString(infotodisplay, TITLE); //user enters the task title they want to display
 
 	do //do while loop because we know there is at least one item on the list so we will definitly need to loop at least once
@@ -167,7 +167,6 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 			char ch = GetLetter(); 
 			if (ch == 'y')
 				return; //it was the right want so we can exit this function because it was already printed
-			ch = getchar(); 
 		}
 			
 		current = current->next; //move to the next item on the list
@@ -181,9 +180,6 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 	}
 
 }
-
-
-
 
 
 
@@ -243,6 +239,7 @@ int TaskCount(PLISTNODE list)  // this counts the tasks on list
 	}
 }
 
+
 void PrintTaskCount(int count)  // this is needed to fix the grammar associated with the print statements  
 {
 	if (count == 1)
@@ -250,6 +247,7 @@ void PrintTaskCount(int count)  // this is needed to fix the grammar associated 
 	else
 		printf("There are %d items on your list.\n", count); //"are" since there is only one
 }
+
 
 void UpdateTask(PLISTNODE* list)  // this is to update task 
 {
@@ -273,14 +271,12 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 			found = true; //change found to true because it was found
 			printf("This is one of the tasks with that name:\n");
 			printf("Task title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
-			printf("Is this the task you would like to update? If yes select y, if no select n\n");
+			printf("Is this the task you would like to update? If yes press y, if no press n\n");
 			char ch = GetLetter();
 			if (ch == 'y')
 			{
 				SelectWhatToUpdate(current);		
 			}
-
-			ch = getchar();	
 		}
 		
 		current = current->next;
@@ -336,7 +332,7 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 		return;
 	}
 
-	puts("Select which task you want to search for:");
+	puts("Enter the title of the task you want to search for:");
 	GetString(infotodisplay, TITLE);
 
 	do
