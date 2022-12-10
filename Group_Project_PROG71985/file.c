@@ -322,7 +322,7 @@
 //} 
 
 
-
+//Saba, Sierra and Michelle authored this module
 void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the file created and update the program with its data
 {
 	FILE* filep;  //file pointer
@@ -371,6 +371,7 @@ void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the 
 
 }
 
+//Saba, Sierra and Michelle authored this module
 void WriteFile(PLISTNODE* list)  //WriteFile function definition. Updates the file created after the user tries to exit the program
 {
 	FILE* filep;  //file pointer

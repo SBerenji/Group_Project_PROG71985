@@ -14,7 +14,7 @@
 #include "input.h"
 #include "file.h"
 
-
+//Saba authored this module
 void GetString(char str[], int max)   //GetString function definition that gets the string from user
 {                                    //No validation included as the instruction asked for string (a sequence of characters)
 									//and did not ask for a certain kind of string like a name
@@ -52,7 +52,7 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 //}
 
 
-
+//Saba authored this module
 char GetLetter(void) //menuinput function definition
 {
 	char option;
@@ -70,6 +70,7 @@ char GetLetter(void) //menuinput function definition
 
 }
 
+//Saba authored this module
 char menuinput(void) //menuinput function definition
 {
 	char option;
