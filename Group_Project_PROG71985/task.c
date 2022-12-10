@@ -15,14 +15,14 @@
 #include "file.h"
 
 
-
+//Saba authored this module
 PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 {
 	list = NULL;  //Initialize the list to NULL and the return the list
 	return list;
 }
 
-
+//Saba authored this module
 void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
 {
 	PLISTNODE newnode = NULL;
@@ -63,6 +63,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 
 }
 
+//Saba authored this module
 void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
 {
 	PLISTNODE current = *list;
@@ -143,7 +144,7 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 	puts("You deleted the task");
 }
 
-
+//Saba authored this module
 bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 {
 	if (*list == NULL)  //return true if stack is empty
@@ -152,8 +153,7 @@ bool isEmpty(PLISTNODE* list)  //isEmpty function definition
 		return false;
 }
 
-
-
+//Sierra authored this module
 void DisplayAll(PLISTNODE list)
 {
 	PLISTNODE current = list;
@@ -173,6 +173,7 @@ void DisplayAll(PLISTNODE list)
 	}
 }
 
+//Sierra authored this module
 void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK list, const int max)
 {
 	PLISTNODE current = list;
@@ -214,8 +215,8 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 }
 
 
-
-void RangeTask(PLISTNODE list)  //RangeTask function definition
+//Saba authored this module
+void RangeTask(PLISTNODE list)
 {
 	PLISTNODE current = list;
 	char letter1, letter2, temp;
@@ -260,6 +261,7 @@ void RangeTask(PLISTNODE list)  //RangeTask function definition
 }
 
 
+//Saba and Sierra authored this module
 int TaskCount(PLISTNODE list)  // this counts the tasks on list 
 {
 	int count = 0; 
@@ -281,7 +283,7 @@ int TaskCount(PLISTNODE list)  // this counts the tasks on list
 	}
 }
 
-
+//Saba and Sierra authored this module
 void PrintTaskCount(int count)  // this is needed to fix the grammar associated with the print statements  
 {
 	if (count == 1)
@@ -290,7 +292,7 @@ void PrintTaskCount(int count)  // this is needed to fix the grammar associated 
 		printf("There are %d items on your list.\n", count); //"are" since there is only one
 }
 
-
+//Sierra authored this module
 void UpdateTask(PLISTNODE* list)  // this is to update task 
 {
 	PLISTNODE current = *list;
@@ -331,7 +333,7 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 
 
 
-
+//Sierra authored this module
 void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch cases for the update menu 
 {
 	char choice;
@@ -362,6 +364,7 @@ void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch c
 	}
 }
 
+//Sierra authored this module
 void SearchForTask(PLISTNODE list) // this is to search for tast on list 
 {
 	PLISTNODE current = list;
@@ -400,7 +403,7 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 }
 
 
-
+//Sierra authored this module
 void LastItem(PLISTNODE list)   // this is to show last item added
 {
 	PLISTNODE current = list;

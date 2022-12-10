@@ -11,7 +11,7 @@
 
 #include "menu.h"
 
-
+//Saba authored this module
 void menu(void)  //menu function definition which prints out the menu options
 {
 	printf("------------------------------------------\n");
@@ -31,7 +31,7 @@ void menu(void)  //menu function definition which prints out the menu options
 }
 
 
-
+//Sierra authored this module
 void UpdateMenu(void)
 {
 	printf("------------------------------------------\n");

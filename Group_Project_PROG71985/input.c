@@ -14,7 +14,7 @@
 #include "input.h"
 #include "file.h"
 
-
+//Saba authored this module
 void GetString(char str[], int max)   //GetString function definition that gets the string from user
 {                                    //No validation included as it is being used for a task manager
 
@@ -47,6 +47,7 @@ char GetLetter(void) //GetLetter function definition
 
 }
 
+//Saba authored this module
 char menuinput(void) //menuinput function definition
 {
 	char option;
