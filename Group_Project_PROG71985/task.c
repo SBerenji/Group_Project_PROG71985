@@ -28,7 +28,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 {
 	PLISTNODE newnode = NULL;
 
-	
+
 	newnode = (PLISTNODE)malloc(sizeof(LISTNODE));  //dynamically allocate memory
 
 	if (newnode == NULL)  //if malloc returns NULL 
@@ -59,7 +59,7 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 }
 
 //Saba authored this module
-void RemoveTask(PLISTNODE* list)   
+void RemoveTask(PLISTNODE* list)
 {
 	PLISTNODE current = *list;
 	char infoToBeDeleted[TITLE];
@@ -91,7 +91,7 @@ void RemoveTask(PLISTNODE* list)
 			else
 				*list = NULL;
 
-			free(current);  
+			free(current);
 			puts("You deleted the task.");
 			return;
 		}
@@ -169,7 +169,7 @@ void DisplayAll(PLISTNODE list)
 }
 
 //Sierra authored this module
-void DisplaySingleTask(PLISTNODE list)  
+void DisplaySingleTask(PLISTNODE list)
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
@@ -188,20 +188,24 @@ void DisplaySingleTask(PLISTNODE list)
 	{
 		if (strcmp(current->taskdata.tasktitle, infotodisplay) == 0) //if they are exactly the same strcmp will return 0
 		{
-			printf("Here is one occurance of this task appearing in your list\n"); 
+			printf("Here is one occurance of this task appearing in your list\n");
 			printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription); //prints the info that matches the searched title
 			found = true;  //added so the message ""This task does not exist on your list" would not be displayed after printing the desired task
 			printf("Was this the task you wanted to display? If yes select y, if no select n\n"); //there could be more than one tasks witht he same title so we want to check if that was the right one
-			char ch = GetLetter(); 
-			if (ch == 'y')
-				return; //it was the right want so we can exit this function because it was already printed
+			char ch;
+			if (ch = GetLetter())
+			{
+				if (ch == 'y')
+					return; //it was the right want so we can exit this function because it was already printed
+			}
+
 		}
-			
+
 		current = current->next; //move to the next item on the list
 
 	} while (current != NULL); //we want to do this until we reach the end of the list
 
-	if (current == NULL && !found)  
+	if (current == NULL && !found)
 	{
 		puts("This task does not exist on your list");
 		return;
@@ -259,7 +263,7 @@ void RangeTask(PLISTNODE list)
 //Saba and Sierra authored this module
 int TaskCount(PLISTNODE list)  // this counts the tasks on list 
 {
-	int count = 0; 
+	int count = 0;
 
 	PLISTNODE current = list;
 
@@ -314,10 +318,11 @@ void UpdateTask(PLISTNODE* list)  // this is to update task
 			char ch = GetLetter();
 			if (ch == 'y')
 			{
-				SelectWhatToUpdate(current);		
+				SelectWhatToUpdate(current);
+				break;
 			}
 		}
-		
+
 		current = current->next;
 	} while (current != NULL); //loops through the entire list
 
@@ -401,7 +406,7 @@ void SearchForTask(PLISTNODE list) // this is to search for task on list
 //Sierra authored this module
 void LastItem(PLISTNODE list)   // this is to show last item added after the last save
 {
-	PLISTNODE current = list; 
+	PLISTNODE current = list;
 
 	if (isEmpty(&list))
 	{
