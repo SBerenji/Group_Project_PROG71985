@@ -5,8 +5,9 @@
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The file source file of a user-friendly task manager        *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
 
 
@@ -24,11 +25,11 @@ void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the 
 {
 	FILE* filep;  //file pointer
 
-	size_t size = sizeof(TASK);
+	size_t size = sizeof(TASK);   //size of the task TASK structure
 
 	if ((filep = fopen("TaskList.txt", "rb")) == NULL)
 	{
-		puts("No file to read from");
+		puts("No file to read from");  //display a message if there is no file to read from
 		return;
 	}
 	else
@@ -92,13 +93,13 @@ void WriteFile(PLISTNODE* list)  //WriteFile function definition. Updates the fi
 				current = current->next;
 			}
 			while (current != NULL);
+
+			puts("All the information has been saved");
 			
 		}
 		else
-			printf("No info to add");
+			printf("No info to add\n");
 	
-
-		puts("All the information has been saved");
 		fclose(filep);  //close the file
 	}
 }

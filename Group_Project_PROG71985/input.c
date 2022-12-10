@@ -5,8 +5,9 @@
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The input source file of a user-friendly task manager       *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
 
 #include "menu.h"
@@ -23,14 +24,14 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 
 		for (int i = 0; i < strlen(str); i++)
 		{
-			if (str[i] == '\n')
+			if (str[i] == '\n')  //replacing a newline character will a null character
 				str[i] = '\0';
 		}
 	}
 }
 
 //Saba authored this module
-char GetLetter(void) //GetLetter function definition
+char GetLetter(void) //GetLetter function definition, gets a letter while validating
 {
 	char option;
 
@@ -38,7 +39,7 @@ char GetLetter(void) //GetLetter function definition
 	if ((scanf("%c", &option) != 1) || ((option < 'A' || option < 'a' && option > 'Z') || option > 'z'))
 	{
 		puts("Invalid input");
-		return 0;
+		return 0;  //return to the menu if invalid
 	}
 
 	while ((getchar()) != '\n');  //discard the newline character
@@ -56,6 +57,6 @@ char menuinput(void) //menuinput function definition
 	{
 		while ((getchar()) != '\n');  //discard the newline character
 	}
-	return option;
+	return option; 
 
 }

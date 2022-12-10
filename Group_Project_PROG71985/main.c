@@ -1,13 +1,12 @@
-//put the documentation here
-
 /*****************************************************************************
 *                      PROG71985/ Group Project                              *
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The main source file of a user-friendly task manager        *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
 
 #include "task.h"
@@ -19,9 +18,9 @@
 int main(void)
 {
 
-	PLISTNODE list = InitializeStack(&list);
+	PLISTNODE list = InitializeStack(&list);  //initializing the list
 
-	ReadFile(&list);  //read from the file
+	ReadFile(&list);  //read from the file (if there is any info saved)
 
 	char choice;
 	char title[TITLE];
@@ -29,17 +28,17 @@ int main(void)
 	int count;
 
 	menu();
-	while ((choice = menuinput()) != 'j')  //call the menuinput function and exit the loop if the input is 'f'
+	while ((choice = menuinput()) != 'j')  //call the menuinput function and exit the loop if the input is 'j'
 	{
 
 		switch (choice)  //using switch case statement for the menu options
 		{
 		case 'a':
 			puts("Please enter a single-word title for your task eg. gym");
-			GetString(title, TITLE);
-			puts("Now please enter the description of your task:");
-			GetString(desc, MAXLEN);
-			AddTask(&list, title, desc);
+			GetString(title, TITLE);  //get the task title from the user
+			puts("Now please enter the description of your task:");   
+			GetString(desc, MAXLEN);   //get the task description from the user
+			AddTask(&list, title, desc);  //add the inormation to the list using AddTask function
 			break;
 
 		case 'b':
@@ -73,6 +72,7 @@ int main(void)
 		case 'i':
 			LastItem(list);
 			break;
+
 		default:
 			puts("\nInvalid input!");  //print when the user chooses an invalid option from the menu
 			puts("Please try again.");
@@ -81,7 +81,7 @@ int main(void)
 		menu();
 	}
 
-	WriteFile(&list);
+	WriteFile(&list);  //write the information to a file
 
 	return 0;
 }

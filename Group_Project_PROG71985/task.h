@@ -5,8 +5,9 @@
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The task header file of a user-friendly task manager        *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
 
 
@@ -38,26 +39,16 @@ typedef struct listnode
 
 
 PLISTNODE InitializeStack(PLISTNODE list);  //InitializeStack function prototype
-void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //PushToSatck function prototype
-void RemoveTask(PLISTNODE* list); 
-bool isEmpty(PLISTNODE* list);
-void DisplayAll(PLISTNODE list);
-void DisplaySingleTask(PLISTNODE list);
-
-void UpdateTask(PLISTNODE* list);
-void SelectWhatToUpdate(PLISTNODE current);
-int TaskCount(PLISTNODE list);
-void PrintTaskCount(int count);
-void SearchForTask(PLISTNODE list);
-void RangeTask(PLISTNODE list);
-
-void LastItem(PLISTNODE list);
-
-
-/*
-
-void ValidateAndPrintRange(PLISTNODE list);
-
-void DisplayRange(PLISTNODE list, int minimum, int maximum);
-
-void Swaps(int* firstnumber, int* secondnumber);*/
+void AddTask(PLISTNODE* list, char titledata[], char descriptdata[]); //AddTask function prototype
+void RemoveTask(PLISTNODE* list); //RemoveTask function prototype
+bool isEmpty(PLISTNODE* list);  //isEmpty function prototype
+void DisplayAll(PLISTNODE list);   //DisplayAll function prototype
+void DisplaySingleTask(PLISTNODE list);    //DisplaySingleTask function prototype
+void UpdateTask(PLISTNODE* list);    //UpdateTask function prototype
+void SelectWhatToUpdate(PLISTNODE current);  //SelectWhatToUpdate function prototype
+int TaskCount(PLISTNODE list);   //TaskCount function prototype
+void PrintTaskCount(int count);  //PrintTaskCount function prototype
+void SearchForTask(PLISTNODE list);  //SearchForTask function prototype
+void RangeTask(PLISTNODE list);   //RangeTask function prototype
+void LastItem(PLISTNODE list);   //LastItem function prototype
+ 

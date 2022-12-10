@@ -1,13 +1,14 @@
-
 /*****************************************************************************
 *                      PROG71985/ Group Project                              *
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The task source file of a user-friendly task manager        *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
+
 
 #include "menu.h"
 #include "task.h"
@@ -23,16 +24,11 @@ PLISTNODE InitializeStack(PLISTNODE list)  //InitializeStack function definition
 }
 
 //Saba authored this module
-void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the front of the list
+void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSatck function definition, this function adds all the new nodes to the list
 {
 	PLISTNODE newnode = NULL;
-	if (isEmpty(&list))
-	{
-		*list = newnode; /* first structure */
-	}
+
 	
-
-
 	newnode = (PLISTNODE)malloc(sizeof(LISTNODE));  //dynamically allocate memory
 
 	if (newnode == NULL)  //if malloc returns NULL 
@@ -41,11 +37,10 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 		exit(EXIT_FAILURE);
 	}
 
-	if (isEmpty(&list))
+	if (isEmpty(&list))  //if the list is empty
 	{
 		*list = newnode; /* first structure */
 	}
-
 
 	else  /* subsequent structures */
 	{
@@ -64,22 +59,22 @@ void AddTask(PLISTNODE* list, char titledata[], char descriptdata[])  //PushToSa
 }
 
 //Saba authored this module
-void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <- should be like this but doesn't work for me - Saba
+void RemoveTask(PLISTNODE* list)   
 {
 	PLISTNODE current = *list;
 	char infoToBeDeleted[TITLE];
 
-
-	if (isEmpty(list))
+	if (isEmpty(list))  //if the list is empty
 	{
 		puts("There are no tasks to delete");
 		return;
 	}
+
 	puts("Please enter the title of the task you want to delete");
-	GetString(infoToBeDeleted, TITLE);
+	GetString(infoToBeDeleted, TITLE);   //get task title from user
 
 
-	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)  //if the title is the same as the title of the last item on the list
+	if (strcmp(current->taskdata.tasktitle, infoToBeDeleted) == 0)  //if the entered title is the same as the title of the last item on the list
 	{
 
 		puts("Is this the task you intend to delete?");
@@ -89,14 +84,14 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 		char ch = getchar();
 		while ((getchar()) != '\n');
 
-		if (ch == 'y')   //since the list can have several tasks with the same title, the user should be asked if it intends to delete this task
+		if (ch == 'y')   //since the list can have several tasks with the same title, the user should be asked if he intends to delete this task
 		{
 			if (current->next != NULL)
 				*list = current->next;
 			else
 				*list = NULL;
 
-			free(current);
+			free(current);  
 			puts("You deleted the task.");
 			return;
 		}
@@ -105,7 +100,7 @@ void RemoveTask(PLISTNODE* list)   //void RemoveTask(PSTACK* list, int max)   <-
 			current = current->next;
 	}
 
-	int flag = 0;
+	int flag = 0;  //used to not display the wrong message when deleting the first node
 
 	PLISTNODE prev = current;  // we will need the previous node for to link over the deleted one
 	while (current != NULL)
@@ -174,7 +169,7 @@ void DisplayAll(PLISTNODE list)
 }
 
 //Sierra authored this module
-void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK list, const int max)
+void DisplaySingleTask(PLISTNODE list)  
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
@@ -206,7 +201,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 
 	} while (current != NULL); //we want to do this until we reach the end of the list
 
-	if (current == NULL && !found)  //added this part - Saba
+	if (current == NULL && !found)  
 	{
 		puts("This task does not exist on your list");
 		return;
@@ -229,14 +224,14 @@ void RangeTask(PLISTNODE list)
 		return;
 	}
 
-	puts("Please enter two letters to determine the range of the tasks you want to print\nbased on the first letter of their titles:");
+	puts("Please enter two letters to determine the range of the tasks you want to print\nbased on the first letter of their title:");
 	puts("\nLetter 1:");
 	if (letter1 = GetLetter())  //get user input for the first letter
 	{
 		puts("Letter 2:");
 		if (letter2 = GetLetter())  //get user input for the second letter if the first letter is valid
 		{
-			if (letter2 < letter1)  //if the second letter is smaller swap
+			if (letter2 < letter1)  //if the second letter is smaller, swap
 			{
 				temp = letter1;
 				letter1 = letter2;
@@ -289,10 +284,10 @@ void PrintTaskCount(int count)  // this is needed to fix the grammar associated 
 	if (count == 1)
 		puts("There is 1 item on the list\n"); //"is" since there is only one
 	else
-		printf("There are %d items on your list.\n", count); //"are" since there is only one
+		printf("There are %d items on your list.\n", count); //"are" since there is more than one
 }
 
-//Sierra authored this module
+//Sierra and Saba authored this module
 void UpdateTask(PLISTNODE* list)  // this is to update task 
 {
 	PLISTNODE current = *list;
@@ -340,7 +335,7 @@ void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch c
 	char title[TITLE];
 	char description[MAXLEN];
 	UpdateMenu();
-	while ((choice = menuinput()) != 'c')  //call the menuinput function and exit the loop if the input is 'f'
+	while ((choice = menuinput()) != 'c')  //call the menuinput function and exit the loop if the input is 'c'
 	{
 		switch (choice)  //using switch case statement for the menu options
 		{
@@ -365,7 +360,7 @@ void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch c
 }
 
 //Saba, Sierra and Michelle authored this module
-void SearchForTask(PLISTNODE list) // this is to search for tast on list 
+void SearchForTask(PLISTNODE list) // this is to search for task on list 
 {
 	PLISTNODE current = list;
 	char infotodisplay[TITLE];
@@ -378,7 +373,7 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 	}
 
 	puts("Enter the title of the task you want to search for:");
-	GetString(infotodisplay, TITLE);
+	GetString(infotodisplay, TITLE);  //get task title from user
 
 	do
 	{
@@ -404,10 +399,9 @@ void SearchForTask(PLISTNODE list) // this is to search for tast on list
 
 
 //Sierra authored this module
-void LastItem(PLISTNODE list)   // this is to show last item added
+void LastItem(PLISTNODE list)   // this is to show last item added after the last save
 {
-	PLISTNODE current = list;
-	
+	PLISTNODE current = list; 
 
 	if (isEmpty(&list))
 	{
@@ -420,10 +414,10 @@ void LastItem(PLISTNODE list)   // this is to show last item added
 		{
 			current = current->next;
 		} //now current is at the end of the list because we have gone to the point where next is null (end of the list)
+
 		printf("This is the last item you entered based on your last save: \n");
 		printf("\nTask title: %s\nTask description: %s\n", current->taskdata.tasktitle, current->taskdata.taskdescription);
 	}
-	
 }
 
 

@@ -1,12 +1,12 @@
-
 /*****************************************************************************
 *                      PROG71985/ Group Project                              *
 *                    Professor: Steve Hendrikse                              *
 *                                                                            *
 *		 BY:	 Michelle Novar, Saba Berenji, Sierra Erb                    *
 *        DATE: 	 December,2022                                               *
-* DESCRIPTION:   A user-friendly task manager with a menu containing several *
-*                options to add, remove, display, and update the tasks       *
+* DESCRIPTION:   The menu source file of a user-friendly task manager        *
+*                with a menu containing several options to add, remove,      *
+*                display, and update the tasks                               *
 ******************************************************************************/
 
 #include "menu.h"
@@ -32,7 +32,7 @@ void menu(void)  //menu function definition which prints out the menu options
 
 
 //Sierra authored this module
-void UpdateMenu(void)
+void UpdateMenu(void)  //UpdateMenu function definition which prints out the menu options
 {
 	printf("------------------------------------------\n");
 	puts("How would you like to update this task. Choose from the menu below:");
