@@ -215,7 +215,7 @@ void DisplaySingleTask(PLISTNODE list)  //should void DisplaySingleTask(PSTACK l
 }
 
 
-//Saba authored this module
+//Saba and Michelle authored this module
 void RangeTask(PLISTNODE list)
 {
 	PLISTNODE current = list;
@@ -364,7 +364,7 @@ void SelectWhatToUpdate(PLISTNODE current) //this function contains the switch c
 	}
 }
 
-//Sierra authored this module
+//Saba, Sierra and Michelle authored this module
 void SearchForTask(PLISTNODE list) // this is to search for tast on list 
 {
 	PLISTNODE current = list;

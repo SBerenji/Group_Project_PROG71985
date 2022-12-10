@@ -29,7 +29,7 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 	}
 }
 
-
+//Saba authored this module
 char GetLetter(void) //GetLetter function definition
 {
 	char option;

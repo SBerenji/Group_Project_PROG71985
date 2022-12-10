@@ -19,6 +19,7 @@
 #include "input.h"
 #include "file.h"
 
+//Saba, Michelle and Sierra authored this file
 void ReadFile(PLISTNODE* list) //ReadFile function definition. Used to read the file created and update the program with its data
 {
 	FILE* filep;  //file pointer

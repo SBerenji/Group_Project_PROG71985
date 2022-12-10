@@ -73,9 +73,6 @@ int main(void)
 		case 'i':
 			LastItem(list);
 			break;
-		case 'j':
-			//AlphabeticalList(&list);
-			break;
 		default:
 			puts("\nInvalid input!");  //print when the user chooses an invalid option from the menu
 			puts("Please try again.");
