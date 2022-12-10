@@ -16,8 +16,7 @@
 
 
 void GetString(char str[], int max)   //GetString function definition that gets the string from user
-{                                    //No validation included as the instruction asked for string (a sequence of characters)
-									//and did not ask for a certain kind of string like a name
+{                                    //No validation included as it is being used for a task manager
 
 	if (fgets(str, max, stdin) != NULL)
 	{
@@ -30,30 +29,8 @@ void GetString(char str[], int max)   //GetString function definition that gets 
 	}
 }
 
-//
-//void GetRange(int firstnumber, int secondnumber)
-//{
-//		int i = 0;
-//		// int firstnumber = 0;
-//		// int secondnumber = 0;
-//
-//		printf("Enter range ( eg. 1-5)\n");
-//		printf("Enter minimum: ");
-//		scanf_s("%d", &firstnumber);
-//		printf("Enter maximum: ");
-//		scanf_s("%d", &secondnumber);
-//		printf("All characters in range %d to %d are:\n", firstnumber, secondnumber);
-//		for (i = firstnumber; i <= secondnumber; ++i)
-//		{
-//			printf("%d\n", i);
-//		}
-//		// return 0;
-//
-//}
 
-
-
-char GetLetter(void) //menuinput function definition
+char GetLetter(void) //GetLetter function definition
 {
 	char option;
 

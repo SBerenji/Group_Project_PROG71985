@@ -29,7 +29,7 @@ int main(void)
 	int count;
 
 	menu();
-	while ((choice = menuinput()) != 'k')  //call the menuinput function and exit the loop if the input is 'f'
+	while ((choice = menuinput()) != 'j')  //call the menuinput function and exit the loop if the input is 'f'
 	{
 
 		switch (choice)  //using switch case statement for the menu options

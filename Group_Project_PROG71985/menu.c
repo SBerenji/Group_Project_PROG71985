@@ -25,8 +25,7 @@ void menu(void)  //menu function definition which prints out the menu options
 	puts("g) Search for task");
 	puts("h) Number of items on the list");
 	puts("i) Display last task on the list");
-	puts("j) Display the task list in alphabetical order");
-	puts("k) QUIT \n");
+	puts("j) QUIT \n");
 	printf("------------------------------------------\n");
 
 }
